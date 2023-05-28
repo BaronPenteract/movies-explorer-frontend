@@ -1,0 +1,12 @@
+.intro__container {
+  margin: 0 -30px;
+  padding-bottom: 30px;
+  height: 493px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  background-color: #272727;
+  box-sizing: border-box;
+  border-radius: 10px;
+}

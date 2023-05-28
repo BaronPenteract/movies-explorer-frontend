@@ -1,0 +1,24 @@
+.nav__link {
+  display: block;
+  width: 96px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: inherit;
+
+  background-color: #303030;
+  border-radius: 10px;
+  border: 1px solid transparent;
+
+  transition: border-color .2s linear, color .2s linear;
+}
+
+.nav__link:hover {
+  border-color: #3DDC84;
+}

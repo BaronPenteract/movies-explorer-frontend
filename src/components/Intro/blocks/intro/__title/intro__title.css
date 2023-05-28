@@ -1,0 +1,12 @@
+.intro__title {
+  max-width: 730px;
+  margin: 0;
+  padding: 0;
+
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -.04em;
+  text-align: center;
+  color: inherit;
+}
