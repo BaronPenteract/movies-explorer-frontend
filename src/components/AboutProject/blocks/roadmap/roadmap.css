@@ -1,0 +1,5 @@
+.roadmap {
+  display: grid;
+  grid-template-columns: 228px 1fr;
+  grid-auto-rows: 72px;
+}

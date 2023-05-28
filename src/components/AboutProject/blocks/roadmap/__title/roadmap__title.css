@@ -1,0 +1,15 @@
+.roadmap__title {
+  height: 50%;
+  margin: 0;
+  padding: 0 0 4px 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  
+  color: #8B8B8B;
+}

@@ -1,15 +1,9 @@
 import './index.css';
 
-const Intro = () => {
-  const navData = [
-    { title: 'О проекте', id: '#aboutProject' },
-    { title: 'Технологии', id: '#technologies' },
-    { title: 'Студент', id: '#student' },
-  ];
-
+const Intro = ({ navData }) => {
   const navElements = navData.map((item) => (
     <li className='nav__item'>
-      <a className='link nav__link' href={item.id}>
+      <a className='link nav__link' href={`#${item.id}`}>
         {item.title}
       </a>
     </li>

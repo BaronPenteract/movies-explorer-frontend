@@ -1,0 +1,12 @@
+.section__title {
+  width: 100%;
+  margin: 0;
+  padding: 0 0 23px 0;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;  
+  letter-spacing: -0.04em;
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #DADADA;
+}
