@@ -1,5 +1,6 @@
 import AboutProject from '../../components/AboutProject';
 import Intro from '../../components/Intro';
+import Techs from '../../components/Techs';
 
 const Landing = () => {
   const navData = [
@@ -12,6 +13,7 @@ const Landing = () => {
     <>
       <Intro navData={navData} />
       <AboutProject {...navData[0]} />
+      <Techs {...navData[1]}/>
     </>
   );
 };

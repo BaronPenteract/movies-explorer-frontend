@@ -6,4 +6,6 @@
   font-weight: 400;
   background-color: #202020;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }

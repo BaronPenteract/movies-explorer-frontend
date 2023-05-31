@@ -1,10 +1,7 @@
 .container {
   width: 100%;
-  min-height: 100vh;
   max-width: 1280px;
   padding: 0 70px;
   margin: 0 auto;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
 }

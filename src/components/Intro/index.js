@@ -10,7 +10,7 @@ const Intro = ({ navData }) => {
   ));
 
   return (
-    <section className='intro'>
+    <section className='container container_type_intro intro'>
       <div className='intro__container'>
         <div className='intro__content'>
           <h1 className='intro__title'>Учебный проект студента факультета Веб-разработки.</h1>

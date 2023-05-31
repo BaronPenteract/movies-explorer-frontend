@@ -22,8 +22,8 @@ const AboutProject = ({ title, id }) => {
   ));
 
   return (
-    <section id={id} className='section about'>
-      <h2 className='section__title about__title'>{title}</h2>
+    <section id={id} className='container container_type_about about'>
+      <h2 className='container__title about__title'>{title}</h2>
       <ul className='about__content'>{aboutElements}</ul>
       <div className='roadmap'>
         <div className='roadmap__content'>

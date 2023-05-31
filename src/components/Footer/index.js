@@ -4,7 +4,7 @@ import './index.css';
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <footer className='container footer'>
       <h2 className='footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
       <div className='footer__content'>
         <div className='footer__copyright'>© 2020</div>
@@ -13,7 +13,7 @@ const Footer = () => {
           <Link className='link footer__link'>Github</Link>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
