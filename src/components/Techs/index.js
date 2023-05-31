@@ -4,7 +4,7 @@ const Techs = ({ id, title }) => {
   const techsData = ['HTML', 'CSS', 'JS', 'React', 'Git', 'Express.js', 'mongoDB'];
 
   return (
-    <div id={id} className='container container_type_techs techs'>
+    <section id={id} className='container container_type_techs techs'>
       <h2 className='container__title techs__title'>{title}</h2>
       <div className='techs__text'>
         <h3 className='techs__subtitle'>7 технологий</h3>
@@ -19,7 +19,7 @@ const Techs = ({ id, title }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 

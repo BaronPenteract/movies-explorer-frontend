@@ -1,0 +1,5 @@
+@import url(./blocks/student/__title/student__title.css);
+@import url(./blocks/student/__container/student__container.css);
+@import url(./blocks/student/__content/student__content.css);
+@import url(./blocks/student/__name/student__name.css);
+@import url(./blocks/student/__info/student__info.css);

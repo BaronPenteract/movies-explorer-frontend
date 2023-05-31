@@ -1,0 +1,10 @@
+.student__name {
+  margin: 0 0 18px;
+  padding: 0;
+
+  color: inherit;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
