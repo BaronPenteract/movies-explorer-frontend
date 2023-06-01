@@ -1,0 +1,9 @@
+.student__photo {
+  display: block;
+  width: 270px;
+  height: 327px;
+
+  border-radius: 10px;
+  object-fit: cover;
+  object-position: center;
+}

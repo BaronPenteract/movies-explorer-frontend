@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 
 import App from './components/App';
-import Landing from './pages/Landing';
+import Main from './pages/Main';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +13,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<App />}>
-          <Route index element={<Landing />} />
+          <Route index element={<Main />} />
           <Route path='*' element={<Navigate to='/' />} />
         </Route>
       </Routes>

@@ -3,7 +3,7 @@ import Intro from '../../components/Intro';
 import Student from '../../components/Student';
 import Techs from '../../components/Techs';
 
-const Landing = () => {
+const Main = () => {
   const navData = [
     { title: 'О проекте', id: 'aboutProject' },
     { title: 'Технологии', id: 'technologies' },
@@ -20,4 +20,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default Main;
