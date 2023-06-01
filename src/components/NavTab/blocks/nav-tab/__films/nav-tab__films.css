@@ -1,0 +1,5 @@
+.nav-tab__films {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}

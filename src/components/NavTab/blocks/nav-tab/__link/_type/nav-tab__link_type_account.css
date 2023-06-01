@@ -1,0 +1,25 @@
+.nav-tab__link_type_account {
+  padding: 0 12px 0 31px;
+  box-sizing: border-box;
+  width: 100px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  border: 1px solid #aaa;
+  border-radius: 50px;
+  background-image: url(../../../../../../images/account.svg);
+  background-repeat: no-repeat;
+  background-position: 10px center;
+
+  transition: border-color .2s linear, color .2s linear;
+}
+
+.nav-tab__link_type_account:hover {
+  border-color: #3DDC84;
+}
