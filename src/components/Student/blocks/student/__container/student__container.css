@@ -1,4 +1,5 @@
 .student__container {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 101px;
 }

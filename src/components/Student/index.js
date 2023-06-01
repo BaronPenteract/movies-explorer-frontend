@@ -1,6 +1,7 @@
 import './index.css';
 
 import studentPhoto from '../../images/student-photo.png';
+import Portfolio from '../Portfolio';
 
 const Student = ({ id, title }) => {
   return (
@@ -29,6 +30,7 @@ const Student = ({ id, title }) => {
         </div>
         <img className='student__photo' alt='Фотография студента' src={studentPhoto} />
       </div>
+      <Portfolio />
     </section>
   );
 };
