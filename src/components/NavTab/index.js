@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 
+import AccountSVG from '../svg/AccountSVG';
+
 import './index.css';
 
 const NavTab = () => {
@@ -14,7 +16,8 @@ const NavTab = () => {
         </Link>
       </div>
       <Link className='link nav-tab__link nav-tab__link_type_account' to='/account'>
-        Аккаунт
+        <AccountSVG className='nav-tab__svg' />
+        <span>Аккаунт</span>
       </Link>
     </nav>
   );
