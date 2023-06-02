@@ -16,3 +16,13 @@
   border-radius: 10px;
   background-color: #303030;
 }
+
+@media screen and (max-width: 1024px) {
+  .techs__item {
+    width: 84px;
+    height: 57px;
+
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

@@ -2,3 +2,9 @@
   padding-top: 100px;
   padding-bottom: 100px;
 }
+
+@media screen and (max-width: 1024px) {
+  .container_type_techs {
+    padding: 90px 50px 90px;
+  }
+}

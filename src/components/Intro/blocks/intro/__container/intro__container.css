@@ -10,3 +10,10 @@
   box-sizing: border-box;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 1024px) {
+  .intro__container {
+    margin: 0 -10px;
+    height: 834px;
+  }
+}

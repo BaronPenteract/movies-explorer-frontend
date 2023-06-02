@@ -7,3 +7,10 @@
   font-size: 14px;
   line-height: 22px;
 }
+
+@media screen and (max-width: 1024px) {
+  .student__about {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

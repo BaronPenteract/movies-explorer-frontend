@@ -7,3 +7,9 @@
 .portfolio__item:not(:last-child) {
   border-bottom: 1px solid #424242;
 }
+
+@media screen and (max-width: 1024px) {
+  .portfolio__item:not(:last-child) {
+    border-color: #e6e6e6;
+  }
+}

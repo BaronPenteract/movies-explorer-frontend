@@ -17,3 +17,10 @@
 .portfolio__link:hover {
   fill: #3DDC84;
 }
+
+@media screen and (max-width: 1024px) {
+  .portfolio__link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+}

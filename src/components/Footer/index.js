@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className='container footer'>
       <h2 className='footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
       <div className='footer__content'>
-        <div className='footer__copyright'>© 2020</div>
+        <div className='footer__copyright'>© 2023</div>
         <div className='footer__links'>
           <Link className='link footer__link'>Яндекс.Практикум</Link>
           <Link className='link footer__link'>Github</Link>

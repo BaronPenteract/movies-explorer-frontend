@@ -2,4 +2,11 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 101px;
+  gap: 15px;
+}
+
+@media screen and (max-width: 1024px) {
+  .student__container {
+    margin-bottom: 92px;
+  }
 }

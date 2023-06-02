@@ -8,3 +8,11 @@
   line-height: 58px;
   letter-spacing: -0.04em;
 }
+
+@media screen and (max-width: 1024px) {
+  .student__name {
+    margin: 0 0 16px;
+    font-size: 40px;
+    line-height: 40px;
+  }
+}

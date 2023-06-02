@@ -7,3 +7,10 @@
   object-fit: cover;
   object-position: center;
 }
+
+@media screen and (max-width: 1024px) {
+  .student__photo {
+    width: 255px;
+    height: 307px;
+  }
+}

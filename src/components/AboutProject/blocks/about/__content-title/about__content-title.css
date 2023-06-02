@@ -7,3 +7,9 @@
   line-height: 24px;
   letter-spacing: -0.04em;
 }
+
+@media screen and (max-width: 1024px) {
+  .about__content-title {
+    margin-bottom: 22px;
+  }
+}

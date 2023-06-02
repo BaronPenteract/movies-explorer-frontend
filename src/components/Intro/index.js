@@ -1,8 +1,8 @@
 import './index.css';
 
 const Intro = ({ navData }) => {
-  const navElements = navData.map((item) => (
-    <li className='nav__item'>
+  const navElements = navData.map((item, idx) => (
+    <li key={idx} className='nav__item'>
       <a className='link nav__link' href={`#${item.id}`}>
         {item.title}
       </a>

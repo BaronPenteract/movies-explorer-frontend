@@ -7,3 +7,11 @@
   align-items: center;
   gap: 26px;
 }
+
+@media screen and (max-width: 1024px) {
+  .techs__text {
+    margin-bottom: 83px;
+    max-width: 460px;
+    gap: 22px;
+  }
+}
