@@ -10,3 +10,12 @@
     margin-bottom: 92px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .student__container {
+    margin-bottom: 70px;
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 40px;
+  }
+}

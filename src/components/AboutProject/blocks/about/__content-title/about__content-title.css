@@ -13,3 +13,11 @@
     margin-bottom: 22px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .about__content-title {
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

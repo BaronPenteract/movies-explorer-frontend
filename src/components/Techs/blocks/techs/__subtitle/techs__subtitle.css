@@ -8,3 +8,10 @@
   line-height: 58px;
   letter-spacing: -0.04em;
 }
+
+@media screen and (max-width: 600px) {
+  .techs__subtitle {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}

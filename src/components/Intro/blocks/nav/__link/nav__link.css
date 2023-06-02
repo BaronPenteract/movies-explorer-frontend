@@ -22,3 +22,13 @@
 .nav__link:hover {
   border-color: #3DDC84;
 }
+
+@media screen and (max-width: 600px) {
+  .nav__link {
+    width: 82px;
+    height: 26px;
+
+    font-size: 10px;
+    line-height: 16px;
+  }
+}

@@ -14,3 +14,10 @@
     height: 307px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .student__photo {
+    width: 292px;
+    height: 352px;
+  }
+}

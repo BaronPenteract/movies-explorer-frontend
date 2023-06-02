@@ -13,3 +13,13 @@
   
   color: #8B8B8B;
 }
+
+@media screen and (max-width: 600px) {
+  .roadmap__title {
+    padding: 0 0 2px 0;
+    align-items: center;
+
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

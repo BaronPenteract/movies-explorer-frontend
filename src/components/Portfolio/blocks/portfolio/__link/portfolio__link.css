@@ -24,3 +24,10 @@
     line-height: 50px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

@@ -22,3 +22,12 @@
   background-color: transparent;
   border: 1px solid #3DDC84;
 }
+
+@media screen and (max-width: 600px) {
+  .auth-tab__link_type_login {
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+    line-height: 16px;
+  }
+}

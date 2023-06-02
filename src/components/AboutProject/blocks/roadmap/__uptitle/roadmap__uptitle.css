@@ -13,3 +13,10 @@
 
   background-color: #303030;
 }
+
+@media screen and (max-width: 600px) {
+  .roadmap__uptitle {
+    font-size: 11px;
+    line-height: 13px;
+  }
+}

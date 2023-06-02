@@ -8,3 +8,9 @@
     padding: 90px 50px 90px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .container_type_techs {
+    padding: 44px 18px 72px;
+  }
+}

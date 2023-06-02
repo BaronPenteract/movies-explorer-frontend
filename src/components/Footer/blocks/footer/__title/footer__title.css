@@ -7,3 +7,10 @@
   color: #8b8b8b;
   text-align: center;
 }
+
+@media screen and (max-width: 600px) {
+  .footer__title {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

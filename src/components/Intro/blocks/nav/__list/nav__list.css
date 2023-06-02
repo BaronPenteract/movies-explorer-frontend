@@ -5,3 +5,9 @@
   display: flex;
   gap: 10px;
 }
+
+@media screen and (max-width: 600px) {
+  .nav__list {
+    gap: 6px;
+  }
+}

@@ -17,3 +17,11 @@
     height: 834px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .intro__container {
+    padding-bottom: 18px;
+    margin: 0;
+    height: 586px;
+  }
+}

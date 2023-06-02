@@ -12,3 +12,9 @@
     max-height: 453px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .intro__content {
+    max-height: 348px;
+  }
+}

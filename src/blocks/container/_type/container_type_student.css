@@ -8,3 +8,9 @@
     padding: 90px 50px 70px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .container_type_student {
+    padding: 70px 14px 52px;
+  }
+}

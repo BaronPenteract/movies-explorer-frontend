@@ -1,16 +1,28 @@
-import { Link } from 'react-router-dom';
-
 import './index.css';
 
 const Footer = () => {
   return (
-    <footer className='container footer'>
+    <footer className='container container_type_footer footer'>
       <h2 className='footer__title'>Учебный проект Яндекс.Практикум х BeatFilm.</h2>
       <div className='footer__content'>
         <div className='footer__copyright'>© 2023</div>
         <div className='footer__links'>
-          <Link className='link footer__link'>Яндекс.Практикум</Link>
-          <Link className='link footer__link'>Github</Link>
+          <a
+            className='link footer__link'
+            href='https://practicum.yandex.ru/'
+            target='_blank'
+            rel='noreferrer'
+          >
+            Яндекс.Практикум
+          </a>
+          <a
+            className='link footer__link'
+            href='https://github.com/BaronPenteract'
+            target='_blank'
+            rel='noreferrer'
+          >
+            Github
+          </a>
         </div>
       </div>
     </footer>

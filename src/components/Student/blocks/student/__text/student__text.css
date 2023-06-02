@@ -1,4 +1,4 @@
-.student__about {
+.student__text {
   margin: 0;
   padding: 0;
 
@@ -9,8 +9,17 @@
 }
 
 @media screen and (max-width: 1024px) {
-  .student__about {
+  .student__text {
     font-size: 12px;
     line-height: 18px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .student__text {
+    margin-bottom: 40px;
+    
+    font-size: 11px;
+    line-height: 16px;
   }
 }

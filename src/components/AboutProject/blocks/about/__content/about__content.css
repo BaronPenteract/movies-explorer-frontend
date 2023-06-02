@@ -12,3 +12,11 @@
     margin-bottom: 93px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .about__content {
+    gap: 56px;
+    flex-direction: column;
+    margin-bottom: 60px;
+  }
+}

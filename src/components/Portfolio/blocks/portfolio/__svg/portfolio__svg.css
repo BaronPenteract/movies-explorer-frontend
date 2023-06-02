@@ -1,7 +1,13 @@
 .portfolio__svg {
   padding: 0 6px;
   width: 18px;
-  height: 17px;
   fill: inherit;
   transition: fill .2s linear;
+}
+
+@media screen and (max-width: 600px) {
+  .portfolio__svg {
+    padding: 0 6px;
+    width: 10px;
+  }
 }

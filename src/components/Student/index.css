@@ -3,6 +3,6 @@
 @import url(./blocks/student/__content/student__content.css);
 @import url(./blocks/student/__name/student__name.css);
 @import url(./blocks/student/__info/student__info.css);
-@import url(./blocks/student/__about/student__about.css);
+@import url(./blocks/student/__text/student__text.css);
 @import url(./blocks/student/__link/student__link.css);
 @import url(./blocks/student/__photo/student__photo.css);

@@ -15,3 +15,10 @@
     gap: 22px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .techs__text {
+    margin-bottom: 50px;
+    gap: 24px;
+  }
+}
