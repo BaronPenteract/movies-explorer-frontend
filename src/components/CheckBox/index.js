@@ -8,6 +8,7 @@ const CheckBox = ({ isChecked, setIsChecked }) => {
       <input
         className='checkbox__input'
         type='checkbox'
+        checked={isChecked}
         onChange={() => {
           setIsChecked(!isChecked);
         }}

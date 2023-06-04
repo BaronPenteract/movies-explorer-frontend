@@ -1,0 +1,11 @@
+@media screen and (max-width: 1024px) {
+  .nav-tab_active {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .nav-tab_active::before {
+    visibility: visible;
+    opacity: 1;
+  }
+}

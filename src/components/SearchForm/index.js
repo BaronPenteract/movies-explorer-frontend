@@ -5,7 +5,7 @@ import SearchSVG from '../svg/SearchSVG';
 import './index.css';
 
 const SearchForm = ({ onSubmit }) => {
-  const [isChecked, setIsChecked] = React.useState(false);
+  const [isChecked, setIsChecked] = React.useState(true);
 
   return (
     <section className='container container_type_search-form' aria-label='Поиск фильмов'>

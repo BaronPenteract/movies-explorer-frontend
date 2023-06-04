@@ -3,3 +3,16 @@
   gap: 16px;
   align-items: center;
 }
+
+@media screen and (max-width: 800px) {
+  .nav-tab__films {
+    flex-direction: column;
+    gap: 23px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-tab__films {
+   gap: 17px;
+  }
+}

@@ -25,3 +25,10 @@
 .search-form__input:focus {
   outline: 1px solid #4285F4;
 }
+
+@media screen and (max-width: 600px) {
+  .search-form__input {
+    padding: 0 13px;
+    height: 44px;
+  }
+}

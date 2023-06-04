@@ -1,4 +1,4 @@
-.nav-tab__link_type_account {
+.nav-tab__link-account {
   padding: 0 12px 0;
   box-sizing: border-box;
   width: 100px;
@@ -10,6 +10,7 @@
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
+  color: inherit;
 
   border: 1px solid #aaa;
   border-radius: 50px;
@@ -18,7 +19,13 @@
   transition: border-color .2s linear, color .2s linear;
 }
 
-.nav-tab__link_type_account:hover {
+.nav-tab__link-account:hover {
   border-color: #3DDC84;
   fill: #3DDC84;
+}
+
+@media screen and (max-width: 1024px) {
+  .nav-tab__link-account {
+    margin-top: auto;
+  }
 }

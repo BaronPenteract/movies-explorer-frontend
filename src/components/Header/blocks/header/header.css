@@ -1,8 +1,15 @@
 .header {
-  height: 74px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  height: 46px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  background-color: #202020;
   box-sizing: border-box;
 }

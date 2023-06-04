@@ -1,0 +1,11 @@
+.burger_active {
+  margin: 0 -3px 0 0;
+  width: 22px;
+  height: 22px;
+}
+
+@media screen and (max-width: 600px) {
+  .burger_active {
+    margin: -16px 3px 0px;
+  }
+}

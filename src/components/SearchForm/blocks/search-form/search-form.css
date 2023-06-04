@@ -7,3 +7,15 @@
 
   border-bottom: 1px solid #424242;
 }
+
+@media screen and (max-width: 1024px) {
+  .search-form{
+    gap: 40px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .search-form{
+    gap: 46px;
+  }
+}
