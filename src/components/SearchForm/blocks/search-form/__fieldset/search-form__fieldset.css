@@ -1,0 +1,11 @@
+.search-form__fieldset {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+  border: none;
+}

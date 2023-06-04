@@ -1,0 +1,7 @@
+.movie-card__button_type_delete {
+  opacity: 0;
+}
+
+.movie-card:hover  .movie-card__button_type_delete {
+  opacity: 1;
+}

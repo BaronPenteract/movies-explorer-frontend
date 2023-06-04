@@ -1,0 +1,12 @@
+.checkbox__custom {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  box-sizing: border-box;
+
+  border-radius: 20px;
+  border: 1px solid #3DDC84;
+  cursor: pointer;
+
+  transition: background-color .2s linear, border-color .2s linear;
+}

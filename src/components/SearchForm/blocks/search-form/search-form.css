@@ -1,0 +1,9 @@
+.search-form {
+  padding-bottom: 39px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+
+  border-bottom: 1px solid #424242;
+}

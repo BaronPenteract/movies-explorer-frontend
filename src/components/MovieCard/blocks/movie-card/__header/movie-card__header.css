@@ -1,0 +1,8 @@
+.movie-card__header {
+  margin-bottom: 10px;
+  
+  width: 100%;
+  height: 151px;
+  overflow: hidden;
+  background-color: #2F2F2F;
+}

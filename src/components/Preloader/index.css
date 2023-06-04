@@ -1,0 +1,5 @@
+@import url(./blocks/preloader/preloader.css);
+@import url(./blocks/preloader/__content/preloader__content.css);
+@import url(./blocks/preloader/__dot/preloader__dot.css);
+
+@import url(./blocks/preloader-anim/preloader-anim.css);

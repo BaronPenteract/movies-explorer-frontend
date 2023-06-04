@@ -1,0 +1,16 @@
+.container_type_search-form {
+  padding-top: 80px;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .container_type_techs {
+    padding: 90px 50px 90px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container_type_techs {
+    padding: 44px 18px 72px;
+  }
+}

@@ -1,0 +1,15 @@
+@keyframes preloader-anim {
+  0% {
+    transform: scale(1)
+  }
+  50% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.preloader-anim {
+  animation: preloader-anim 1.6s linear infinite;
+}
