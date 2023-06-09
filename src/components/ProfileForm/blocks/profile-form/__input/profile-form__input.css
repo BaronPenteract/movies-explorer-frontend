@@ -1,0 +1,18 @@
+.profile-form__input {
+  flex-grow: 1;
+  max-width: 75%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  color: inherit;
+  text-align: right;
+}
+
+.profile-form__input:focus {
+  outline: none;
+}

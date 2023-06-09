@@ -1,0 +1,16 @@
+.error__message {
+  margin: 0;
+  padding: 0;
+  
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: inherit;
+}
+
+@media screen and (max-width: 600px) {
+  .error__message {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

@@ -1,0 +1,12 @@
+.error__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .error__text {
+    gap: 10px;
+  }
+}

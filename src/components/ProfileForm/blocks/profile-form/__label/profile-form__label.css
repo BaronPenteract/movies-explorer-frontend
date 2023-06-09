@@ -1,0 +1,13 @@
+.profile-form__label {
+  padding-bottom: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #424242;
+  box-sizing: border-box;
+}
+
+.profile-form__label:last-of-type {
+  border-color: transparent;
+}

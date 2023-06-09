@@ -12,6 +12,8 @@ import Register from '../../pages/Register';
 
 import './index.css';
 import Login from '../../pages/Login';
+import Profile from '../../pages/Profile';
+import Error from '../../pages/Error';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = React.useState(true);
@@ -21,6 +23,7 @@ const App = () => {
       <Routes>
         <Route path='/signup' element={<></>} />
         <Route path='/signin' element={<></>} />
+        <Route path='/error' element={<></>} />
         <Route path='/*' element={<Header loggedIn={loggedIn} />} />
       </Routes>
       <Routes>
@@ -30,14 +33,17 @@ const App = () => {
           path='/saved-movies'
           element={<ProtectedRoute loggedIn={loggedIn} element={SavedMovies} />}
         />
+        <Route path='/profile' element={<ProtectedRoute loggedIn={loggedIn} element={Profile} />} />
         <Route path='/signup' element={<Login />} />
         <Route path='/signin' element={<Register />} />
-        <Route path='/*' element={<Navigate to='/' />} />
+        <Route path='/error' element={<Error />} />
+        <Route path='/*' element={<Navigate to='/error' />} />
       </Routes>
       <Routes>
         <Route path='/signup' element={<></>} />
         <Route path='/signin' element={<></>} />
         <Route path='/profile' element={<></>} />
+        <Route path='/error' element={<></>} />
         <Route path='/*' element={<Footer />} />
       </Routes>
     </main>

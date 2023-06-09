@@ -34,7 +34,7 @@ const NavTab = () => {
               Сохранённые фильмы
             </Link>
           </div>
-          <Link className='link nav-tab__link-account' to='/account'>
+          <Link className='link nav-tab__link-account' to='/profile'>
             <AccountSVG className='nav-tab__svg' />
             <span>Аккаунт</span>
           </Link>

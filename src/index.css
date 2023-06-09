@@ -13,3 +13,11 @@
 @import url(./blocks/container/_type/container_type_movie-list.css);
 
 @import url(./blocks/auth/auth.css);
+@import url(./blocks/profile/profile.css);
+
+@import url(./blocks/error/error.css);
+@import url(./blocks/error/__container/error__container.css);
+@import url(./blocks/error/__text/error__text.css);
+@import url(./blocks/error/__code/error__code.css);
+@import url(./blocks/error/__message/error__message.css);
+@import url(./blocks/error/__btn/error__btn.css);

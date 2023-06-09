@@ -1,9 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import MoviesCardList from '../../components/MoviesCardList';
 import Preloader from '../../components/Preloader';
 import SearchForm from '../../components/SearchForm';
 
 const Movies = () => {
+  const navigate = useNavigate();
+
   const [movieDatasList, setMovieDatasList] = React.useState([]);
   const [isLoading, setIsloading] = React.useState(true);
 
@@ -19,7 +23,9 @@ const Movies = () => {
       .then((res) => {
         setMovieDatasList(res);
       })
-      .catch(console.log)
+      .catch((err) => {
+        navigate('/error', { state: { statusCode: 500, message: err.message }, replace: true });
+      })
       .finally(() => {
         setIsloading(false);
       });
