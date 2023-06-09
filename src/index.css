@@ -11,3 +11,5 @@
 @import url(./blocks/container/_type/container_type_footer.css);
 @import url(./blocks/container/_type/container_type_search-form.css);
 @import url(./blocks/container/_type/container_type_movie-list.css);
+
+@import url(./blocks/auth/auth.css);

@@ -1,0 +1,21 @@
+.form-auth {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 396px;
+  max-height: 560px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 600px) {
+  .form-auth {
+    max-width: 260px;
+    max-height: none;
+    height: auto;
+    gap: 80px;
+  }
+}

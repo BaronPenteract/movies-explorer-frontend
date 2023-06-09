@@ -1,0 +1,10 @@
+.form-auth__error {
+  display: block;
+  min-height: 12px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  opacity: 0;
+  
+  color: #EE3465;
+}

@@ -1,0 +1,44 @@
+.form-auth__btn {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 396px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: inherit;
+
+  box-sizing: border-box;
+  border: 1px solid transparent; 
+  border-radius: 3px;
+  background-color: #4285F4;
+  cursor: pointer;
+  transition: background-color .2s linear, border-color .2s linear, color .2s linear;
+}
+
+
+.form-auth__btn:hover {
+  background-color: transparent;
+  border-color: #4285F4;
+  color: #4285F4;
+}
+
+.form-auth__btn:focus {
+  outline: none;
+  background-color: transparent;
+  border-color: #4285F4;
+  color: #4285F4;
+}
+
+@media screen and (max-width: 600px) {
+  .form-auth__btn {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

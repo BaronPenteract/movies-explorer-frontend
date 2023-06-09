@@ -1,0 +1,12 @@
+.form-auth__footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  .form-auth__footer{
+    gap: 14px;
+  }
+}
