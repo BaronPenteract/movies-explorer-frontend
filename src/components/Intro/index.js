@@ -1,11 +1,13 @@
+import { Link as ScrollLink } from 'react-scroll';
+
 import './index.css';
 
 const Intro = ({ navData }) => {
   const navElements = navData.map((item, idx) => (
     <li key={idx} className='nav__item'>
-      <a className='link nav__link' href={`#${item.id}`}>
+      <ScrollLink className='link nav__link' to={item.id} smooth={true} duration={500}>
         {item.title}
-      </a>
+      </ScrollLink>
     </li>
   ));
 

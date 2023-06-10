@@ -1,4 +1,6 @@
-# Проект: [Films](https://baronpenteract.github.io/movies-explorer-frontend/index.html)
+# Проект на сервере: [Movies Explorer](https://baron.nomoredomains.rocks/)
+
+# Проект на GitHub: [Movies Explorer](https://baronpenteract.github.io/movies-explorer-frontend/index.html)
 
 **Интро**
 

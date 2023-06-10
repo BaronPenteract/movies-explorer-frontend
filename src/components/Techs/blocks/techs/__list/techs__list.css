@@ -2,11 +2,18 @@
   list-style-type: none;
   margin: 0 auto;
   padding: 0;
+  width: 100%;
 
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 90px);
+  justify-content: center;
   gap: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .techs__list {
+    grid-template-columns: repeat(auto-fit, 84px);
+  }
 }
 
 @media screen and (max-width: 600px) {

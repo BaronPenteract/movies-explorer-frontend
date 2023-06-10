@@ -10,6 +10,7 @@
 @import url(./blocks/profile-form/__error/_active/profile-form__error_active.css);
 @import url(./blocks/profile-form/__footer/profile-form__footer.css);
 @import url(./blocks/profile-form/__btn/profile-form__btn.css);
+@import url(./blocks/profile-form/__btn/_type/profile-form__btn_type_submit.css);
 @import url(./blocks/profile-form/__btn/_type/profile-form__btn_type_signout.css);
 @import url(./blocks/profile-form/__under-text/profile-form__under-text.css);
 @import url(./blocks/profile-form/__link/profile-form__link.css);

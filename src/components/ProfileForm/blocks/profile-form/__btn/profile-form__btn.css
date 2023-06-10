@@ -18,27 +18,19 @@
   transition: background-color .2s linear, border-color .2s linear, color .2s linear;
 }
 
-
-.profile-form__btn:hover {
-  color: #4285F4;
-}
-
 .profile-form__btn:focus {
   outline: none;
-  color: #4285F4;
 }
-/* 
+
 .profile-form__btn:disabled {
   opacity: .5;
   cursor: default;
-  border-color: #fff;
   color: #fff;
 }
 
 .profile-form__btn:disabled:hover {
-  border-color: #fff;
   color: #fff;
-} */
+}
 
 @media screen and (max-width: 600px) {
   .profile-form__btn {

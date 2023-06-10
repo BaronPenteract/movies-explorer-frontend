@@ -33,9 +33,17 @@ const SavedMovies = () => {
       });
   }, []);
 
+  const onSearchSubmit = (setIsloading) => {
+    setIsloading(true);
+    setTimeout(() => {
+      console.log('MoviesPage: searched');
+      setIsloading(false);
+    }, 1000);
+  };
+
   return (
     <>
-      <SearchForm />
+      <SearchForm onSearchSubmit={onSearchSubmit} />
       {isLoading ? <Preloader /> : <MoviesCardList movieDatasList={movieDatasList} />}
     </>
   );

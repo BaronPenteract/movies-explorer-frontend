@@ -6,11 +6,9 @@ import Preloader from '../../components/Preloader';
 import AuthForm from '../../components/AuthForm';
 
 const Register = ({ onRegister }) => {
-  const [isLoading, setIsloading] = React.useState(true);
+  const [isLoading, setIsloading] = React.useState(false);
 
   const { values, handleChange, errors, isValid, setIsValid } = useFormAndValidation();
-
-  const submitButton = React.useRef();
 
   React.useEffect(() => {
     setIsValid(false);
@@ -18,8 +16,8 @@ const Register = ({ onRegister }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('Запрос на регистрацию улетел.');
-    //onRegister(values, isLoading, setIsloading);
+    console.log('RegisterPage: Запрос на регистрацию улетел.');
+    onRegister(values, setIsloading);
   };
 
   return (
@@ -76,12 +74,11 @@ const Register = ({ onRegister }) => {
         </fieldset>
         <div className='form-auth__footer'>
           <button
-            ref={submitButton}
             className={`form-auth__btn form-auth__btn_type_submit `}
             disabled={!isValid}
             type='submit'
           >
-            Зарегистрироваться
+            {isLoading ? <Preloader /> : 'Зарегистрироваться'}
           </button>
           <span className='form-auth__under-text'>
             Уже зарегистрированы?

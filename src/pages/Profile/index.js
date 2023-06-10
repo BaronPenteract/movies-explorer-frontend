@@ -6,7 +6,8 @@ import Preloader from '../../components/Preloader';
 import ProfileForm from '../../components/ProfileForm';
 
 const Profile = ({ onProfileEdit, onSignOut }) => {
-  const [isLoading, setIsloading] = React.useState(true);
+  const [isEditLoading, setIsEditloading] = React.useState(false);
+  const [isSignOutLoading, setIsSignOutloading] = React.useState(false);
 
   const { values, handleChange, errors, isValid, setIsValid } = useFormAndValidation();
 
@@ -18,19 +19,19 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('Запрос на редактирование профиля улетел.');
-    //onProfileEdit(values, isLoading, setIsloading);
+    console.log('ProfilePage: Запрос на редактирование профиля улетел.');
+    onProfileEdit(values, setIsEditloading);
   };
 
   const signOutHandler = (e) => {
     e.preventDefault();
-    console.log('Запрос на выход улетел.');
-    //onSignOut();
+    console.log('ProfilePage: Запрос на выход улетел.');
+    onSignOut(setIsSignOutloading);
   };
 
   return (
     <section className='profile'>
-      <ProfileForm title='Привет, Виталий!' name='profileEditForm' onSubmit={submitHandler}>
+      <ProfileForm title='Привет, Андрей!' name='profileEditForm' onSubmit={submitHandler}>
         <fieldset className='profile-form__input-container'>
           <label className='profile-form__label'>
             <span className='profile-form__input-title'>Имя</span>
@@ -40,7 +41,7 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
               }`}
               type='text'
               name='name'
-              value={values.name || 'Виталий'}
+              value={values.name || 'Андрей'}
               onChange={handleChange}
               required
               minLength='2'
@@ -78,13 +79,13 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
             disabled={!isValid}
             type='submit'
           >
-            Редактировать
+            {isEditLoading ? <Preloader /> : 'Редактировать'}
           </button>
           <button
             className={`profile-form__btn profile-form__btn_type_signout`}
             onClick={signOutHandler}
           >
-            Выйти из аккаунта
+            {isSignOutLoading ? <Preloader /> : 'Выйти из аккаунта'}
           </button>
         </div>
       </ProfileForm>

@@ -6,11 +6,9 @@ import Preloader from '../../components/Preloader';
 import AuthForm from '../../components/AuthForm';
 
 const Login = ({ onLogin }) => {
-  const [isLoading, setIsloading] = React.useState(true);
+  const [isLoading, setIsloading] = React.useState(false);
 
   const { values, handleChange, errors, isValid, setIsValid } = useFormAndValidation();
-
-  const submitButton = React.useRef();
 
   React.useEffect(() => {
     setIsValid(false);
@@ -18,8 +16,8 @@ const Login = ({ onLogin }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('Запрос на вход улетел.');
-    //onLogin(values, isLoading, setIsloading);
+    console.log('LoginPage: Запрос на вход улетел.');
+    onLogin(values, setIsloading);
   };
 
   return (
@@ -60,12 +58,11 @@ const Login = ({ onLogin }) => {
         </fieldset>
         <div className='form-auth__footer'>
           <button
-            ref={submitButton}
             className={`form-auth__btn form-auth__btn_type_submit `}
             disabled={!isValid}
             type='submit'
           >
-            Войти
+            {isLoading ? <Preloader /> : 'Войти'}
           </button>
           <span className='form-auth__under-text'>
             Ещё не зарегистрированы?

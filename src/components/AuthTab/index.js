@@ -5,10 +5,10 @@ import './index.css';
 const AuthTab = () => {
   return (
     <div className='auth-tab'>
-      <Link className='link auth-tab__link auth-tab__link_type_register' to='/signup'>
+      <Link className='link auth-tab__link auth-tab__link_type_register' to='/signin'>
         Регистрация
       </Link>
-      <Link className='link auth-tab__link auth-tab__link_type_login' to='/signin'>
+      <Link className='link auth-tab__link auth-tab__link_type_login' to='/signup'>
         Войти
       </Link>
     </div>
