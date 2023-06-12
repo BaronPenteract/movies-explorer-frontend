@@ -1,3 +1,8 @@
 .form-auth__link {
   color: #4285F4;
+  fill: #3DDC84;
+}
+
+.form-auth__link:hover {
+  fill: #4285F4;
 }

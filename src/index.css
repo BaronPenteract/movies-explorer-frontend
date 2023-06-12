@@ -2,15 +2,11 @@
 @import url(./vendor/fonts/fonts.css);
 
 @import url(./blocks/link/link.css);
+@import url(./blocks/content/content.css);
 @import url(./blocks/container/container.css);
 @import url(./blocks/container/__title/container__title.css);
-@import url(./blocks/container/_type/container_type_intro.css);
-@import url(./blocks/container/_type/container_type_about.css);
-@import url(./blocks/container/_type/container_type_techs.css);
-@import url(./blocks/container/_type/container_type_student.css);
-@import url(./blocks/container/_type/container_type_footer.css);
-@import url(./blocks/container/_type/container_type_search-form.css);
 @import url(./blocks/container/_type/container_type_movie-list.css);
+@import url(./blocks/container/_type/container_type_saved-movie-list.css);
 
 @import url(./blocks/auth/auth.css);
 @import url(./blocks/profile/profile.css);

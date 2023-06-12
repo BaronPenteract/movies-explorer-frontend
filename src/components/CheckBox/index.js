@@ -13,14 +13,14 @@ const CheckBox = ({ isChecked, setIsChecked }) => {
           setIsChecked(!isChecked);
         }}
       />
-      <div
+      <span
         className={`checkbox__custom ${isChecked ? 'checkbox__custom_active' : ''}`}
         aria-hidden='true'
       >
         <span
           className={`checkbox__custom-check ${isChecked ? 'checkbox__custom-check_active' : ''}`}
         />
-      </div>
+      </span>
       Короткометражки
     </label>
   );

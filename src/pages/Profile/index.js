@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import Preloader from '../../components/Preloader';
@@ -41,7 +40,8 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
               }`}
               type='text'
               name='name'
-              value={values.name || 'Андрей'}
+              placeholder='Пример: Андрей'
+              value={values.name || ''}
               onChange={handleChange}
               required
               minLength='2'
@@ -57,7 +57,8 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
               type='email'
               name='email'
               onChange={handleChange}
-              value={values.email || 'pochta@yandex.ru'}
+              value={values.email || ''}
+              placeholder='Пример: pochta@yandex.ru'
               required
             />
           </label>
@@ -84,6 +85,7 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
           <button
             className={`profile-form__btn profile-form__btn_type_signout`}
             onClick={signOutHandler}
+            type='button'
           >
             {isSignOutLoading ? <Preloader /> : 'Выйти из аккаунта'}
           </button>

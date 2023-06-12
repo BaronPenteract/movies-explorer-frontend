@@ -5,4 +5,10 @@
 
   object-fit: cover;
   object-position: center;
+
+  transition: filter .2s linear;
+}
+
+.movie-card__image:hover {
+  filter: brightness(120%) contrast(120%);
 }

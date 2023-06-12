@@ -11,6 +11,13 @@
   
   background: #2F2F2F;
   border-radius: 6px;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
+  box-sizing: border-box;
+
+  transition: color .2s linear, border-color .2s linear;
+}
+
+.more-movies-button:hover {
+  border-color: #3DDC84;
 }

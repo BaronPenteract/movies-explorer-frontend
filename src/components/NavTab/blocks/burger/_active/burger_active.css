@@ -1,11 +1,15 @@
 .burger_active {
-  margin: 0 -3px 0 0;
+  position: fixed;
+  top: 26px;
+  right: 20px;
+  
   width: 22px;
   height: 22px;
 }
 
 @media screen and (max-width: 600px) {
   .burger_active {
-    margin: -16px 3px 0px;
+    top: 18px;
+    right: 9px;
   }
 }

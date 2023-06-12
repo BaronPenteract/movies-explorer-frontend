@@ -4,18 +4,18 @@
   height: 3px;
   background-color: #fff;
   position: relative;
-  transition: background-color .2s linear;
+  transition: transform .2s linear,  bottom .2s linear,  background-color .2s linear;
 }
 
 .burger__line::after, .burger__line::before {
   content: '';
   display: block;
   width: 100%;
-  height: 3px;
-  background-color: #fff;
+  height: inherit;
+  background-color: inherit;
   position: absolute;
   left: 0;
-  transition: transform .2s linear,  bottom .2s linear;
+  transition: transform .2s linear,  bottom .2s linear,  background-color .2s linear;
 }
 
 .burger__line::before {

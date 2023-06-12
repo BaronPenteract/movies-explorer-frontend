@@ -2,7 +2,7 @@ import React from 'react';
 import MovieCard from '../MovieCard';
 import './index.css';
 
-const MoviesCardList = ({ isSavedMovies, movieDatasList }) => {
+const MoviesCardList = ({ movieDatasList }) => {
   const [itemsToShow, setItemsToShow] = React.useState(16);
 
   /* const moviesList = movieDatasList.map((movieData, idx) => (
@@ -19,7 +19,7 @@ const MoviesCardList = ({ isSavedMovies, movieDatasList }) => {
 
     moviesList.push(
       <li className='movie-list__item' key={movieData.id}>
-        <MovieCard {...movieData} isSavedMovies={isSavedMovies} />
+        <MovieCard {...movieData} />
       </li>,
     );
   });
@@ -29,16 +29,16 @@ const MoviesCardList = ({ isSavedMovies, movieDatasList }) => {
   };
 
   return (
-    <section className='container container_type_movie-list' aria-label='Список фильмов'>
+    <>
       <ul className='movie-list'>{moviesList}</ul>
       {movieDatasList.length > itemsToShow ? (
-        <button className='link more-movies-button' onClick={handleMoreButtonClick}>
+        <button className='link more-movies-button' onClick={handleMoreButtonClick} type='button'>
           Ещё
         </button>
       ) : (
         ''
       )}
-    </section>
+    </>
   );
 };
 

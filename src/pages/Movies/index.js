@@ -29,7 +29,7 @@ const Movies = () => {
       .finally(() => {
         setIsloading(false);
       });
-  }, []);
+  }, [navigate]);
 
   const onSearchSubmit = (setIsloading) => {
     setIsloading(true);
@@ -42,7 +42,9 @@ const Movies = () => {
   return (
     <>
       <SearchForm onSearchSubmit={onSearchSubmit} />
-      {isLoading ? <Preloader /> : <MoviesCardList movieDatasList={movieDatasList} />}
+      <section className='container container_type_movie-list' aria-label='Список фильмов'>
+        {isLoading ? <Preloader /> : <MoviesCardList movieDatasList={movieDatasList} />}
+      </section>
     </>
   );
 };

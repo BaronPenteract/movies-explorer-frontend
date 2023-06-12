@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import logo from '../../images/logo.svg';
+import LogoSVG from '../svg/LogoSVG';
 import './index.css';
 
 const AuthForm = ({ title, name, onSubmit, children }) => {
@@ -8,7 +8,7 @@ const AuthForm = ({ title, name, onSubmit, children }) => {
     <form className={`form-auth`} name={name} onSubmit={onSubmit} action='/' noValidate>
       <div className='form-auth__header'>
         <Link to='/' className='form-auth__link'>
-          <img className='form-auth__logo' src={logo} alt='Логотип Movies Explorer' />
+          <LogoSVG className='form-auth__logo' />
         </Link>
         <h1 className='form-auth__title'>{title}</h1>
       </div>

@@ -1,4 +1,5 @@
 .search-form {
+  padding-top: 80px;
   padding-bottom: 39px;
   display: flex;
   flex-direction: column;

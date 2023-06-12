@@ -1,5 +1,5 @@
 {
-  "homepage": "https://baronpenteract.github.io/movies-explorer-frontend",
+  "homepage-optional": "https://baronpenteract.github.io/movies-explorer-frontend",
   "name": "movies-explorer-frontend",
   "version": "0.1.0",
   "private": true,

@@ -13,6 +13,24 @@
   transition: background-color .2s linear, border-color .2s linear;
 }
 
+.search-form__submit:disabled {
+  background-color: #193766;
+  border-color: transparent;
+  fill: #808080;
+}
+
+.search-form__submit:disabled:hover {
+  background-color: #193766;
+  border-color: transparent;
+  fill: #808080;
+  cursor: default;
+}
+
+.search-form__submit:disabled:hover
+.search-form__svg {
+  transform: none;
+}
+
 .search-form__submit:hover {
   background-color: transparent;
   border-color: #4285F4;

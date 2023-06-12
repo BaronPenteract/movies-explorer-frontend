@@ -1,5 +1,6 @@
 .movie-card__button_type_delete {
   opacity: 0;
+  transition: opacity .2s linear;
 }
 
 .movie-card:hover  .movie-card__button_type_delete {

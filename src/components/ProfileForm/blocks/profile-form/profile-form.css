@@ -2,26 +2,20 @@
   flex-grow: 1;
   width: 100%;
   max-width: 410px;
-  max-height: 480px;
 
   display: flex;
   flex-direction: column;
-  gap: 84px;
 
   box-sizing: border-box;
 }
 
 @media screen and (max-width: 1024px) {
   .profile-form {
-    gap: 56px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .profile-form {
     max-width: 260px;
-    max-height: none;
-    height: auto;
-    gap: 40px;
   }
 }

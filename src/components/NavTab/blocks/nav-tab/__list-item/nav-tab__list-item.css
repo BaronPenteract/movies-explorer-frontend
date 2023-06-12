@@ -1,0 +1,14 @@
+.nav-tab__list-item {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-tab__list-item:first-of-type {
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-tab__list-item:first-of-type {
+    display: block;
+  }
+}

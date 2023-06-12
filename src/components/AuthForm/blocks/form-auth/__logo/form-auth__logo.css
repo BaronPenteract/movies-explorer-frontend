@@ -4,4 +4,7 @@
   height: 38px;
   object-fit: contain;
   object-position: center;
+  fill: inherit;
+
+  transition: fill .2s linear;
 }

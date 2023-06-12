@@ -1,4 +1,4 @@
-.auth-tab__link_type_login {
+.auth-tab__button_type_login {
   width: 76px;
   height: 32px;
   box-sizing: border-box;
@@ -18,13 +18,13 @@
   transition: background-color .2s linear, border-color .2s linear, color .2s linear;
 }
 
-.auth-tab__link_type_login:hover {
+.auth-tab__button_type_login:hover {
   background-color: transparent;
   border: 1px solid #3DDC84;
 }
 
 @media screen and (max-width: 600px) {
-  .auth-tab__link_type_login {
+  .auth-tab__button_type_login {
     width: 54px;
     height: 26px;
     font-size: 10px;

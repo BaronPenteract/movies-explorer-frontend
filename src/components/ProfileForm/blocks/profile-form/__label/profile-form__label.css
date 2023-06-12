@@ -1,11 +1,10 @@
 .profile-form__label {
-  padding-bottom: 16px;
+  position: relative;
 
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  border-bottom: 1px solid #424242;
-  box-sizing: border-box;
+  border-bottom-color:  #424242;
 }
 
 .profile-form__label:last-of-type {

@@ -1,16 +1,43 @@
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
 import './index.css';
-import logo from '../../images/logo.svg';
+import LogoSVG from '../svg/LogoSVG';
 import NavTab from '../NavTab';
 import AuthTab from '../AuthTab';
-import { Link } from 'react-router-dom';
+
+const pages = [
+  { title: 'Главная', pathName: '/' },
+  { title: 'Фильмы', pathName: '/movies' },
+  { title: 'Сохранённые фильмы', pathName: '/saved-movies' },
+];
 
 const Header = ({ loggedIn }) => {
+  const location = useLocation();
+  const [currentPage, setCurrentPage] = React.useState('');
+
+  React.useEffect(() => {
+    pages.forEach((page) => {
+      if (location.pathname.endsWith(page.pathName)) {
+        setCurrentPage(page.pathName);
+      }
+    });
+  }, [location]);
+
   return (
     <header className='container header'>
-      <Link to='/' className='header__link'>
-        <img className='header__logo' src={logo} alt='Логотип Movies Explorer' />
+      <Link
+        to={pages[0].pathName}
+        className='header__link'
+        onClick={() => setCurrentPage(pages[0].pathName)}
+      >
+        <LogoSVG className='header__logo' />
       </Link>
-      {loggedIn ? <NavTab /> : <AuthTab />}
+      {loggedIn ? (
+        <NavTab pages={pages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      ) : (
+        <AuthTab />
+      )}
     </header>
   );
 };

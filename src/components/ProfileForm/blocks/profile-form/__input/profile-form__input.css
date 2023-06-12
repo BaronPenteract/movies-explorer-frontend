@@ -1,9 +1,12 @@
 .profile-form__input {
   flex-grow: 1;
-  max-width: 75%;
   margin: 0;
-  padding: 0;
-  border: none;
+  padding: 0 0 16px 0;
+
+  border: 1px solid transparent;
+  border-bottom-color:  inherit;
+
+  box-sizing: border-box;
   background-color: transparent;
   
   font-weight: 400;
@@ -11,8 +14,11 @@
   line-height: 13px;
   color: inherit;
   text-align: right;
+
+  transition: border-color .2s linear;
 }
 
 .profile-form__input:focus {
   outline: none;
+  border-bottom-color:  #4285F4;
 }

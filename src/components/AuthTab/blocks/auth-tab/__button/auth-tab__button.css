@@ -1,0 +1,14 @@
+.auth-tab__button {
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  transition: color .2s linear;
+}
+
+.auth-tab__button:hover {
+  color: #3DDC84;
+}

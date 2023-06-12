@@ -58,36 +58,38 @@ const App = () => {
   };
 
   return (
-    <main className='page'>
+    <div className='page'>
       <Routes>
         <Route path='/signup' element={<></>} />
         <Route path='/signin' element={<></>} />
         <Route path='/error' element={<></>} />
         <Route path='/*' element={<Header loggedIn={loggedIn} />} />
       </Routes>
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/movies' element={<ProtectedRoute loggedIn={loggedIn} element={Movies} />} />
-        <Route
-          path='/saved-movies'
-          element={<ProtectedRoute loggedIn={loggedIn} element={SavedMovies} />}
-        />
-        <Route
-          path='/profile'
-          element={
-            <ProtectedRoute
-              loggedIn={loggedIn}
-              onProfileEdit={onProfileEdit}
-              onSignOut={onSignOut}
-              element={Profile}
-            />
-          }
-        />
-        <Route path='/signup' element={<Login onLogin={onLogin} />} />
-        <Route path='/signin' element={<Register onRegister={onRegister} />} />
-        <Route path='/error' element={<Error />} />
-        <Route path='/*' element={<Navigate to='/error' replace />} />
-      </Routes>
+      <main className='content'>
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/movies' element={<ProtectedRoute loggedIn={loggedIn} element={Movies} />} />
+          <Route
+            path='/saved-movies'
+            element={<ProtectedRoute loggedIn={loggedIn} element={SavedMovies} />}
+          />
+          <Route
+            path='/profile'
+            element={
+              <ProtectedRoute
+                loggedIn={loggedIn}
+                onProfileEdit={onProfileEdit}
+                onSignOut={onSignOut}
+                element={Profile}
+              />
+            }
+          />
+          <Route path='/signup' element={<Login onLogin={onLogin} />} />
+          <Route path='/signin' element={<Register onRegister={onRegister} />} />
+          <Route path='/error' element={<Error />} />
+          <Route path='/*' element={<Navigate to='/error' replace />} />
+        </Routes>
+      </main>
       <Routes>
         <Route path='/signup' element={<></>} />
         <Route path='/signin' element={<></>} />
@@ -95,7 +97,7 @@ const App = () => {
         <Route path='/error' element={<></>} />
         <Route path='/*' element={<Footer />} />
       </Routes>
-    </main>
+    </div>
   );
 };
 

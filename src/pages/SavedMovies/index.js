@@ -21,9 +21,15 @@ const SavedMovies = () => {
         }
       })
       .then((res) => {
-        setMovieDatasList(
-          res.map((item) => ({ ...item, owner: { name: 'Me', _id: 42, email: 'email' } })),
-        );
+        const readyData = [];
+
+        res.map((item, idx) => {
+          if (idx < 3) {
+            readyData.push({ ...item, owner: { name: 'Me', _id: 42, email: 'email' } });
+          }
+        });
+
+        setMovieDatasList(readyData);
       })
       .catch((err) => {
         navigate('/error', { state: { statusCode: 500, message: err.message }, replace: true });
@@ -31,7 +37,7 @@ const SavedMovies = () => {
       .finally(() => {
         setIsloading(false);
       });
-  }, []);
+  }, [navigate]);
 
   const onSearchSubmit = (setIsloading) => {
     setIsloading(true);
@@ -44,7 +50,12 @@ const SavedMovies = () => {
   return (
     <>
       <SearchForm onSearchSubmit={onSearchSubmit} />
-      {isLoading ? <Preloader /> : <MoviesCardList movieDatasList={movieDatasList} />}
+      <section
+        className='container container_type_saved-movie-list'
+        aria-label='Список сохраненных фильмов'
+      >
+        {isLoading ? <Preloader /> : <MoviesCardList movieDatasList={movieDatasList} />}
+      </section>
     </>
   );
 };

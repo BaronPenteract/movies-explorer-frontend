@@ -1,3 +1,4 @@
+@import url(./blocks/student/student.css);
 @import url(./blocks/student/__title/student__title.css);
 @import url(./blocks/student/__container/student__container.css);
 @import url(./blocks/student/__content/student__content.css);

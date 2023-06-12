@@ -1,4 +1,5 @@
 .checkbox__custom {
+  display: block;
   position: relative;
   width: 36px;
   height: 20px;
@@ -9,4 +10,8 @@
   cursor: pointer;
 
   transition: background-color .2s linear, border-color .2s linear;
+}
+
+.checkbox__custom:hover {
+  border-color: #4285F4;
 }

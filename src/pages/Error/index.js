@@ -17,7 +17,7 @@ const Error = ({ statusCode = 404, message = 'Страница не найден
           <p className='error__code'>{state?.statusCode || statusCode}</p>
           <h1 className='error__message'>{state?.message || message}</h1>
         </div>
-        <button className='link error__btn' onClick={handleBackClick}>
+        <button className='link error__btn' onClick={handleBackClick} type='button'>
           Назад
         </button>
       </div>

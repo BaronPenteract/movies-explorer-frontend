@@ -1,10 +1,11 @@
 .intro__container {
   margin: 0 -30px;
-  padding-bottom: 30px;
-  height: 493px;
+  padding: 160px 0 30px 0;
+  min-height: 493px;
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 
   background-color: #272727;
   box-sizing: border-box;
@@ -13,15 +14,16 @@
 
 @media screen and (max-width: 1024px) {
   .intro__container {
+    padding: 350px 0 30px 0;
     margin: 0 -10px;
-    height: 834px;
+    min-height: 834px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .intro__container {
-    padding-bottom: 18px;
+    padding: 220px 0 18px 0;
     margin: 0;
-    height: 586px;
+    min-height: 586px;
   }
 }

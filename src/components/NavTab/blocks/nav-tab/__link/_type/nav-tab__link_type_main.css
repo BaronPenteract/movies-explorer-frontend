@@ -1,9 +1,0 @@
-.nav-tab__link_type_main {
-  display: none;
-}
-
-@media screen and (max-width: 800px) {
-  .nav-tab__link_type_main {
-    display: block;
-  }
-}

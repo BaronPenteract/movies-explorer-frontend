@@ -32,6 +32,7 @@ const Register = ({ onRegister }) => {
               name='name'
               value={values.name || ''}
               onChange={handleChange}
+              placeholder='Андрей'
               required
               minLength='2'
               maxLength='40'
@@ -48,6 +49,7 @@ const Register = ({ onRegister }) => {
               name='email'
               onChange={handleChange}
               value={values.email || ''}
+              placeholder='pochta@yandex.ru'
               required
             />
             <span className={`form-auth__error ${errors.email ? 'form-auth__error_active' : ''}`}>
@@ -62,7 +64,9 @@ const Register = ({ onRegister }) => {
               name='password'
               onChange={handleChange}
               value={values.password || ''}
+              placeholder='********'
               minLength={8}
+              maxLength={30}
               required
             />
             <span
