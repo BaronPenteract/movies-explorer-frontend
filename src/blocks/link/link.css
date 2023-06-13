@@ -1,0 +1,14 @@
+.link {
+  display: block;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  text-overflow: inherit;
+  white-space: inherit;
+  overflow: inherit;
+  transition: color .2s linear;
+}
+
+.link:hover {
+  color: #3DDC84;
+}

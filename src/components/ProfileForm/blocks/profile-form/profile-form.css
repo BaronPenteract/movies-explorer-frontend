@@ -1,0 +1,21 @@
+.profile-form {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 410px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1024px) {
+  .profile-form {
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile-form {
+    max-width: 260px;
+  }
+}

@@ -1,0 +1,22 @@
+.nav-tab__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  
+  display: flex;
+  gap: 21px;
+  align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-tab__list {
+    flex-direction: column;
+    gap: 23px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-tab__list {
+   gap: 17px;
+  }
+}

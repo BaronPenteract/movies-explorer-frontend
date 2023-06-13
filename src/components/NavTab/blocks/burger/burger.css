@@ -1,0 +1,31 @@
+.burger {
+  position: relative;
+  z-index: 1000;
+  display: none;
+  padding: 0;
+  margin: 0px 8px 0px;
+  width: 28px;
+  height: 28px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  transition: top .2s linear, right .2s linear;
+}
+
+.burger:hover .burger__line {
+  background-color: #3DDC84;
+}
+
+@media screen and (max-width: 800px) {
+  .burger {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .burger {
+    margin: 0px 9px 0px;
+    width: 22px;
+    height: 22px;
+  }
+}

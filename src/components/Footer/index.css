@@ -1,0 +1,5 @@
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__title/footer__title.css);
+@import url(./blocks/footer/__content/footer__content.css);
+@import url(./blocks/footer/__links/footer__links.css);
+@import url(./blocks/footer/__link/footer__link.css);

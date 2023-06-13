@@ -1,0 +1,11 @@
+.auth-tab {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+@media screen and (max-width: 600px) {
+  .auth-tab {
+    gap: 14px;
+  }
+}

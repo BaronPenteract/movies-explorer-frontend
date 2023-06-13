@@ -1,0 +1,37 @@
+.burger__line {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  position: relative;
+  transition: transform .2s linear,  bottom .2s linear,  background-color .2s linear;
+}
+
+.burger__line::after, .burger__line::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: inherit;
+  background-color: inherit;
+  position: absolute;
+  left: 0;
+  transition: transform .2s linear,  bottom .2s linear,  background-color .2s linear;
+}
+
+.burger__line::before {
+  bottom: 10px;
+}
+
+.burger__line::after {
+  bottom: -10px;
+}
+
+@media screen and (max-width: 600px) {
+  .burger__line::before {
+    bottom: 9px;
+  }
+
+  .burger__line::after {
+    bottom: -9px;
+  }
+}

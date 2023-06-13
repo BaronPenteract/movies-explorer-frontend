@@ -1,0 +1,22 @@
+.about__content {
+  list-style-type: none;
+  margin: 0 0 110px 0;
+  padding: 0;
+  display: flex;
+  gap: 53px;
+}
+
+@media screen and (max-width: 1024px) {
+  .about__content {
+    gap: 37px;
+    margin-bottom: 93px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about__content {
+    gap: 56px;
+    flex-direction: column;
+    margin-bottom: 60px;
+  }
+}

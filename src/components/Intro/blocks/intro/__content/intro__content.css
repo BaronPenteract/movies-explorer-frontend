@@ -1,0 +1,14 @@
+.intro__content {
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 1024px) {
+  .intro__content {
+    max-width: 680px;
+  }
+}

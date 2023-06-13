@@ -1,0 +1,23 @@
+.movie-card__button {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: none;
+  border-radius: 50%;
+  background-color: #313131;
+  cursor: pointer;
+  fill: #fff;
+
+  transition: background-color .2s linear;
+}
+
+.movie-card__button:hover {
+  background-color: #3DDC84;
+  fill: #313131;
+}

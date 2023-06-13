@@ -1,0 +1,13 @@
+.form-auth__header {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  gap: 40px;
+}
+
+@media screen and (max-width: 600px) {
+  .form-auth__header{
+    align-items: center;
+    gap: 50px;
+  }
+}

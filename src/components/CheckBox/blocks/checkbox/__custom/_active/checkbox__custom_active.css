@@ -1,0 +1,8 @@
+.checkbox__custom_active {
+  background-color: #3DDC84;
+  border-color: transparent;
+}
+
+.checkbox__custom_active:hover {
+  background-color: #4285F4;;
+}

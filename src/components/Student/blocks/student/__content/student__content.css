@@ -1,0 +1,14 @@
+.student__content {
+  width: 100%;
+  max-width: 600px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 1024px) {
+  .student__content {
+    max-width: 364px;
+  }
+}

@@ -1,0 +1,16 @@
+.student {
+  padding-top: 110px;
+  padding-bottom: 105px;
+}
+
+@media screen and (max-width: 1024px) {
+  .student {
+    padding: 90px 50px 70px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .student {
+    padding: 70px 14px 48px;
+  }
+}

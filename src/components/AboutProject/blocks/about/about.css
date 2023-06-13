@@ -1,0 +1,17 @@
+.about {
+  padding-top: 110px;
+  padding-bottom: 106px;
+  background-color: inherit;
+}
+
+@media screen and (max-width: 1024px) {
+  .about {
+    padding: 90px 50px 85px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about {
+    padding: 72px 18px 85px
+  }
+}

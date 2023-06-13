@@ -1,0 +1,9 @@
+.movie-card__svg {
+  width: 10px;
+  fill: inherit;
+  stroke: inherit;
+  object-fit: contain;
+  object-position: center;
+
+  transition: fill .1s linear;
+}

@@ -1,0 +1,30 @@
+.nav-tab__link {
+  color: inherit;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-tab__link {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+
+    padding-bottom: 3px;
+    box-sizing: border-box;
+    border-bottom: 2px solid transparent;
+
+    transition: border-color .2s linear;
+  }
+
+  .nav-tab__link:hover {
+    border-bottom-color: #fff;
+    color: #fff;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-tab__link {
+    padding-bottom: 5px;
+  }
+}

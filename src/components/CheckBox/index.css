@@ -1,0 +1,6 @@
+@import url(./blocks/checkbox/checkbox.css);
+@import url(./blocks/checkbox/__input/checkbox__input.css);
+@import url(./blocks/checkbox/__custom/checkbox__custom.css);
+@import url(./blocks/checkbox/__custom/_active/checkbox__custom_active.css);
+@import url(./blocks/checkbox/__custom-check/checkbox__custom-check.css);
+@import url(./blocks/checkbox/__custom-check/_active/checkbox__custom-check_active.css);

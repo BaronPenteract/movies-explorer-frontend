@@ -1,0 +1,12 @@
+.profile-form__label {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom-color:  #424242;
+}
+
+.profile-form__label:last-of-type {
+  border-color: transparent;
+}

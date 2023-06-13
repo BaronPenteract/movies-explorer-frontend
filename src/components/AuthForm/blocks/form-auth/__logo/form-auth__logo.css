@@ -1,0 +1,10 @@
+.form-auth__logo {
+  display: block;
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  object-position: center;
+  fill: inherit;
+
+  transition: fill .2s linear;
+}

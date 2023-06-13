@@ -1,0 +1,20 @@
+.movie-card__header {
+  margin-bottom: 10px;
+  
+  width: 100%;
+  height: 151px;
+  overflow: hidden;
+  background-color: #2F2F2F;
+}
+
+@media screen and (max-width: 1024px) {
+  .movie-card__header {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .movie-card__header {
+    height: 168px;
+  }
+}

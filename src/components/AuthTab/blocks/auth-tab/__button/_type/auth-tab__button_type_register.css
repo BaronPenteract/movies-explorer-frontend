@@ -1,0 +1,12 @@
+.auth-tab__button_type_register {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  .auth-tab__button_type_register {
+    font-size: 10px;
+    line-height: 16px;
+  }
+}

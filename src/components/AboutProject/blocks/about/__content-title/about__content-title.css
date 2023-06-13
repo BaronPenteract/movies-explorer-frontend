@@ -1,0 +1,23 @@
+.about__content-title {
+  padding: 0;
+  margin: 0 0 26px 0;
+  color: inherit;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.04em;
+}
+
+@media screen and (max-width: 1024px) {
+  .about__content-title {
+    margin-bottom: 22px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .about__content-title {
+    margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

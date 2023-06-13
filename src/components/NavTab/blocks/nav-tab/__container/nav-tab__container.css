@@ -1,0 +1,27 @@
+.nav-tab__container {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-tab__container {
+    padding: 160px 0 90px;
+    width: 100vw;
+    max-width: 520px;
+    height: 100%;
+
+    flex-direction: column;
+    
+    background-color: #202020;
+    
+    transition: visibility .2s linear, opacity .2s linear;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav-tab__container {
+    padding: 144px 0 44px;
+  }
+}

@@ -1,0 +1,15 @@
+.student__title {
+  margin-bottom: 66px;
+}
+
+@media screen and (max-width: 1024px) {
+  .student__title {
+    margin-bottom: 66px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .student__title {
+    margin-bottom: 60px;
+  }
+}

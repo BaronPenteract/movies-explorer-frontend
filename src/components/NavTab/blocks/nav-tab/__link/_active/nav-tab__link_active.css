@@ -1,0 +1,10 @@
+.nav-tab__link_active {
+  font-weight: 500;
+}
+
+@media screen and (max-width: 800px) {
+  .nav-tab__link_active {
+    border-bottom-color: #fff;
+    color: #fff;
+  }
+}

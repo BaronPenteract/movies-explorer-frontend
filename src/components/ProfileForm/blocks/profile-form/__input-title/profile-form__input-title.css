@@ -1,0 +1,12 @@
+.profile-form__input-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  
+  color: #fff;
+}

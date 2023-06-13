@@ -1,0 +1,18 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: inherit;
+}
+
+@media screen and (max-width: 600px) {
+  .checkbox {
+    gap: 13px;
+    font-size: 11px;
+    line-height: 18px;
+  }
+}

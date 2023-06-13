@@ -1,0 +1,12 @@
+.container_type_movie-list {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media screen and (max-width: 600px) {
+  .container_type_movie-list {
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

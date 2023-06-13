@@ -1,0 +1,15 @@
+.portfolio__item {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.portfolio__item:not(:last-child) {
+  border-bottom: 1px solid #424242;
+}
+
+@media screen and (max-width: 1024px) {
+  .portfolio__item:not(:last-child) {
+    border-color: #e6e6e6;
+  }
+}

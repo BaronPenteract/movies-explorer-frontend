@@ -1,0 +1,8 @@
+.nav-tab__svg {
+  display: block;
+  width: 12px;
+  height: 14px;
+  fill: inherit;
+
+  transition: fill .2s linear;
+}

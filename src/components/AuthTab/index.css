@@ -1,0 +1,4 @@
+@import url(./blocks/auth-tab/auth-tab.css);
+@import url(./blocks/auth-tab/__button/auth-tab__button.css);
+@import url(./blocks/auth-tab/__button/_type/auth-tab__button_type_login.css);
+@import url(./blocks/auth-tab/__button/_type/auth-tab__button_type_register.css);

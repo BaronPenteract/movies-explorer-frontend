@@ -1,0 +1,8 @@
+.profile-form__btn_type_signout {
+  font-weight: 500;
+  color: #EE3465;
+}
+
+.profile-form__btn_type_signout:hover {
+  color: #cf0037;
+}

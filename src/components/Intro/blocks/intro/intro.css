@@ -1,0 +1,11 @@
+.intro {
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .intro {
+    padding-top: 14px;
+  }
+}

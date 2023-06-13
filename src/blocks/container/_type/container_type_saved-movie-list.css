@@ -1,0 +1,18 @@
+.container_type_saved-movie-list {
+  padding-top: 80px;
+  padding-bottom: 240px;
+}
+
+@media screen and (max-width: 1024px) {
+  .container_type_saved-movie-list {
+    padding-bottom: 150px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container_type_saved-movie-list {
+    padding-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

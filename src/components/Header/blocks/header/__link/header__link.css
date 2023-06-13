@@ -1,0 +1,8 @@
+.header__link {
+  color: inherit; 
+  fill: #3DDC84;
+}
+
+.header__link:hover {
+  fill: #4285F4;
+}

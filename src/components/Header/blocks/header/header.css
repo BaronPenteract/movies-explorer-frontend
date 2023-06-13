@@ -1,0 +1,10 @@
+.header {
+  width: 100%;
+  min-height: 74px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: #202020;
+  box-sizing: border-box;
+}

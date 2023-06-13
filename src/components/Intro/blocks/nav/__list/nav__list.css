@@ -1,0 +1,13 @@
+.nav__list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .nav__list {
+    gap: 6px;
+  }
+}

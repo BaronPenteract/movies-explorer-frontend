@@ -1,0 +1,6 @@
+.profile-form__footer {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

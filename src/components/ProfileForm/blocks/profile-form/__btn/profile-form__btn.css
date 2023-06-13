@@ -1,0 +1,40 @@
+.profile-form__btn {
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: inherit;
+
+  border: none;
+  background-color: transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color .2s linear, border-color .2s linear, color .2s linear;
+}
+
+.profile-form__btn:focus {
+  outline: none;
+}
+
+.profile-form__btn:disabled {
+  opacity: .5;
+  cursor: default;
+  color: #fff;
+}
+
+.profile-form__btn:disabled:hover {
+  color: #fff;
+}
+
+@media screen and (max-width: 600px) {
+  .profile-form__btn {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

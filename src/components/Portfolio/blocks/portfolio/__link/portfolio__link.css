@@ -1,0 +1,34 @@
+.portfolio__link {
+  padding: 20px 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: inherit;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;  
+  letter-spacing: -0.04em;
+
+  fill: #fff;
+}
+
+.portfolio__link:hover {
+  fill: #3DDC84;
+}
+
+@media screen and (max-width: 1024px) {
+  .portfolio__link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
