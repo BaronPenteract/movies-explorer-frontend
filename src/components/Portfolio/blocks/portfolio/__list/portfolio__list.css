@@ -2,14 +2,7 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
-  height: 270px;
 
   display: flex;
   flex-direction: column;
-}
-
-@media screen and (max-width: 600px) {
-  .portfolio__list {
-    height: 201px;
-  }
 }
