@@ -9,7 +9,7 @@ const SavedMovies = () => {
   const navigate = useNavigate();
 
   const [isLoading, setIsloading] = React.useState(true);
-  const [movieDatasList, setMovieDatasList] = React.useState([]);
+  const [movies, setMovies] = React.useState([]);
   // пока так
   React.useEffect(() => {
     fetch('https://api.nomoreparties.co/beatfilm-movies')
@@ -24,12 +24,12 @@ const SavedMovies = () => {
         const readyData = [];
 
         res.map((item, idx) => {
-          if (idx < 3) {
+          if (idx < 50) {
             readyData.push({ ...item, owner: { name: 'Me', _id: 42, email: 'email' } });
           }
         });
 
-        setMovieDatasList(readyData);
+        setMovies(readyData);
       })
       .catch((err) => {
         navigate('/error', { state: { statusCode: 500, message: err.message }, replace: true });
@@ -54,7 +54,7 @@ const SavedMovies = () => {
         className='container container_type_saved-movie-list'
         aria-label='Список сохраненных фильмов'
       >
-        {isLoading ? <Preloader /> : <MoviesCardList movieDatasList={movieDatasList} />}
+        {isLoading ? <Preloader /> : <MoviesCardList movies={movies} />}
       </section>
     </>
   );

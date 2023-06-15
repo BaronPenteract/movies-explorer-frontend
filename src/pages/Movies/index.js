@@ -1,49 +1,92 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import MoviesCardList from '../../components/MoviesCardList';
 import Preloader from '../../components/Preloader';
 import SearchForm from '../../components/SearchForm';
+import { filterMovies } from '../../utils/filterMovies';
+import { getDeatFilmMovies } from '../../utils/MoviesApi';
 
 const Movies = () => {
-  const navigate = useNavigate();
+  let isSearched = React.useRef(false);
+  const messageRef = React.useRef(HTMLDivElement);
 
-  const [movieDatasList, setMovieDatasList] = React.useState([]);
-  const [isLoading, setIsloading] = React.useState(true);
+  const [movies, setMovies] = React.useState([]);
+  const [searchedMovies, setSearchedMovies] = React.useState([]);
+
+  const [searchValue, setSearchValue] = React.useState('');
+  const [isShortMovies, setIsShortMovies] = React.useState(true);
+
+  const [isDataLoading, setIsDataloading] = React.useState(false);
 
   React.useEffect(() => {
-    fetch('https://api.nomoreparties.co/beatfilm-movies')
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(new Error('что-то не так.'));
-        }
-      })
-      .then((res) => {
-        setMovieDatasList(res);
-      })
-      .catch((err) => {
-        navigate('/error', { state: { statusCode: 500, message: err.message }, replace: true });
-      })
-      .finally(() => {
-        setIsloading(false);
-      });
-  }, [navigate]);
+    const moviesInLocalStorage = JSON.parse(localStorage.getItem('movies'));
+    const searchValueInLocalStorage = localStorage.getItem('searchValue');
+    const isShortMoviesInLocalStorage =
+      localStorage.getItem('isShortMovies') === 'true' ? true : false;
 
-  const onSearchSubmit = (setIsloading) => {
-    setIsloading(true);
-    setTimeout(() => {
-      console.log('MoviesPage: searched');
-      setIsloading(false);
-    }, 1000);
+    if (moviesInLocalStorage) {
+      setMovies(moviesInLocalStorage);
+      isSearched.current = true;
+      console.log('Movies: ', moviesInLocalStorage);
+    }
+
+    if (searchValueInLocalStorage) {
+      setSearchValue(searchValueInLocalStorage);
+      console.log('Movies: ', searchValueInLocalStorage);
+    }
+
+    if (!isShortMoviesInLocalStorage) {
+      setIsShortMovies(isShortMoviesInLocalStorage);
+      console.log('Movies: ', isShortMoviesInLocalStorage);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (isSearched.current && !searchedMovies.length) {
+      messageRef.current.textContent = 'Ничего не найдено';
+    }
+  }, [searchedMovies]);
+
+  const onSearchSubmit = async (value, isShortMoviesChecked, setIsSearchloading) => {
+    messageRef.current.textContent = '';
+    setIsDataloading(true);
+    setIsSearchloading(true);
+
+    if (!movies.length) {
+      await getDeatFilmMovies()
+        .then((res) => {
+          setMovies(res);
+          setSearchedMovies(filterMovies(res, value, isShortMoviesChecked));
+          localStorage.setItem('movies', JSON.stringify(res));
+          isSearched.current = true;
+        })
+        .catch((err) => {
+          messageRef.current.textContent =
+            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
+          /* navigate('/error', { state: { statusCode: 500, message: err.message }, replace: true }); */
+        });
+    } else {
+      setSearchedMovies(filterMovies(movies, value, isShortMoviesChecked));
+    }
+
+    localStorage.setItem('searchValue', value.toString());
+    localStorage.setItem('isShortMovies', isShortMoviesChecked);
+    setIsSearchloading(false);
+    setIsDataloading(false);
+    setIsShortMovies(isShortMoviesChecked);
+    console.log('isShortMoviesChecked', isShortMoviesChecked);
   };
-
+  console.log(isShortMovies);
   return (
     <>
-      <SearchForm onSearchSubmit={onSearchSubmit} />
+      <SearchForm
+        isShortMovies={isShortMovies}
+        searchValue={searchValue}
+        onSearchSubmit={onSearchSubmit}
+      />
       <section className='container container_type_movie-list' aria-label='Список фильмов'>
-        {isLoading ? <Preloader /> : <MoviesCardList movieDatasList={movieDatasList} />}
+        <div ref={messageRef}></div>
+        {isDataLoading ? <Preloader /> : <MoviesCardList movies={searchedMovies} />}
       </section>
     </>
   );

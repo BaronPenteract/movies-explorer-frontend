@@ -1,0 +1,23 @@
+const WIDTH_L = 1280;
+const WIDTH_M = 768;
+const WIDTH_S = 480;
+
+const ITEMS_TO_SHOW_L = 16;
+const ITEMS_TO_SHOW_M = 8;
+const ITEMS_TO_SHOW_S = 5;
+
+const ITEMS_TO_LOAD_L = 4;
+const ITEMS_TO_LOAD_M = 4;
+const ITEMS_TO_LOAD_S = 4;
+
+export {
+  WIDTH_L,
+  WIDTH_M,
+  WIDTH_S,
+  ITEMS_TO_SHOW_L,
+  ITEMS_TO_SHOW_M,
+  ITEMS_TO_SHOW_S,
+  ITEMS_TO_LOAD_L,
+  ITEMS_TO_LOAD_M,
+  ITEMS_TO_LOAD_S,
+};

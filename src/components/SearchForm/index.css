@@ -3,3 +3,4 @@
 @import url(./blocks/search-form/__input/search-form__input.css);
 @import url(./blocks/search-form/__submit/search-form__submit.css);
 @import url(./blocks/search-form/__svg/search-form__svg.css);
+@import url(./blocks/search-form/__error/search-form__error.css);

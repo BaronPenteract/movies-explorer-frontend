@@ -1,27 +1,35 @@
 import React from 'react';
 
-import { useFormAndValidation } from '../../hooks/useFormAndValidation';
-
 import Preloader from '../Preloader';
 import CheckBox from '../CheckBox';
 import SearchSVG from '../svg/SearchSVG';
 import './index.css';
 
-const SearchForm = ({ onSearchSubmit }) => {
+const SearchForm = ({ isShortMovies = false, searchValue = '', onSearchSubmit }) => {
   const [isLoading, setIsloading] = React.useState(false);
-  const [isChecked, setIsChecked] = React.useState(true);
+  const [isCheckBoxActive, setIsCheckBoxActive] = React.useState(true);
 
-  const { values, handleChange, isValid, setIsValid } = useFormAndValidation();
+  const errorElementRef = React.useRef(HTMLSpanElement);
+  const inputElementRef = React.useRef(HTMLInputElement);
 
   React.useEffect(() => {
-    setIsValid(false);
-  }, [setIsValid]);
+    inputElementRef.current.value = searchValue;
+    setIsCheckBoxActive(isShortMovies);
+  }, [isShortMovies, searchValue]);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    console.log('SearchForm: Запрос на поиск улетел.');
-    onSearchSubmit(setIsloading);
+    if (inputElementRef.current.value === '') {
+      errorElementRef.current.textContent = 'Нужно ввести ключевое слово';
+      inputElementRef.current.focus();
+
+      return;
+    }
+
+    onSearchSubmit(inputElementRef.current.value, isCheckBoxActive, setIsloading);
+
+    errorElementRef.current.textContent = '';
   };
 
   return (
@@ -35,20 +43,19 @@ const SearchForm = ({ onSearchSubmit }) => {
       >
         <fieldset className='search-form__fieldset'>
           <input
+            ref={inputElementRef}
             className='search-form__input'
             type='text'
             name='searchValue'
             placeholder='Фильм'
-            onChange={handleChange}
-            value={values.searchValue || ''}
             required
-            minLength={2}
           />
-          <button className='search-form__submit' type='submit' disabled={!isValid}>
+          <button className='search-form__submit' type='submit'>
             {isLoading ? <Preloader /> : <SearchSVG className='search-form__svg' />}
           </button>
         </fieldset>
-        <CheckBox isChecked={isChecked} setIsChecked={setIsChecked} />
+        <span ref={errorElementRef} className='search-form__error'></span>
+        <CheckBox isChecked={isCheckBoxActive} setIsChecked={setIsCheckBoxActive} />
       </form>
     </section>
   );
