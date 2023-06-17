@@ -1,86 +1,78 @@
 import React from 'react';
+import { useScreenResize } from '../../hooks/useScreenResize';
 
-import {
-  WIDTH_L,
-  WIDTH_S,
-  ITEMS_TO_SHOW_L,
-  ITEMS_TO_SHOW_M,
-  ITEMS_TO_SHOW_S,
-  ITEMS_TO_LOAD_L,
-  ITEMS_TO_LOAD_M,
-  ITEMS_TO_LOAD_S,
-} from '../../utils/constants';
-import { addMovie, removeMovie } from '../../utils/MainApi';
+import { addMovie, getSavedMovies, removeMovie } from '../../utils/MainApi';
 
 import MovieCard from '../MovieCard';
 import './index.css';
 
-const MoviesCardList = ({ movies }) => {
-  const [screenWidth, setScreenWidth] = React.useState(WIDTH_L);
-  const [itemsToShow, setItemsToShow] = React.useState(ITEMS_TO_SHOW_L);
-  const [itemsToLoad, setItemsToLoad] = React.useState(ITEMS_TO_LOAD_L);
+const MoviesCardList = ({ movies, isSaved }) => {
+  const { itemsToShow, itemsToLoad, setItemsToShow } = useScreenResize();
+
+  const [moviesToShow, setMoviesToShow] = React.useState(movies);
 
   React.useEffect(() => {
-    setScreenWidth(window.screen.width);
+    setMoviesToShow(movies);
+  }, [movies]);
 
-    window.onresize = () => {
-      setTimeout(() => {
-        setScreenWidth(window.screen.width);
-      }, 1000);
-    };
-
-    return () => {
-      window.onresize = null;
-    };
-  }, []);
-
+  //-------------------- сравниваем каждый фильм с каждым сохраненным фильмом, чтобы понять добавлен он или нет
   React.useEffect(() => {
-    if (screenWidth >= WIDTH_L) {
-      setItemsToShow(ITEMS_TO_SHOW_L);
-      setItemsToLoad(ITEMS_TO_LOAD_L);
-    } else if (screenWidth >= WIDTH_S) {
-      setItemsToShow(ITEMS_TO_SHOW_M);
-      setItemsToLoad(ITEMS_TO_LOAD_M);
-    } else if (screenWidth < WIDTH_S) {
-      setItemsToShow(ITEMS_TO_SHOW_S);
-      setItemsToLoad(ITEMS_TO_LOAD_S);
+    if (!isSaved) {
+      getSavedMovies().then((res) => {
+        if (res.length) {
+          setMoviesToShow((prev) => {
+            let result = [];
+
+            prev.forEach((movie) => {
+              let item = movie;
+
+              res.forEach((savedMovie) => {
+                if (movie.id === savedMovie.movieId) {
+                  item = { ...movie, _id: savedMovie._id };
+                }
+              });
+
+              result.push(item);
+            });
+
+            return result;
+          });
+        }
+      });
     }
-  }, [screenWidth]);
-
-  const deleteMovie = (id, setIsAdded) => {
-    return removeMovie(id)
+  }, [isSaved, movies]);
+  //--------------------------------------------------------------------------
+  const handleAddMovieClick = async (movie, setIsAdded) => {
+    await addMovie(movie)
       .then((res) => {
-        console.log(res);
-        setIsAdded(false);
-      })
-      .catch(console.log);
-  };
-
-  const handleAddMovieClick = (movie, setIsAdded) => {
-    addMovie(movie)
-      .then((res) => {
-        console.log(res);
         setIsAdded(true);
       })
       .catch(console.log);
   };
 
   const handleDeleteMovieClick = (id, setIsAdded) => {
-    deleteMovie(id, setIsAdded);
+    removeMovie(id)
+      .then((res) => {
+        if (isSaved) {
+          setMoviesToShow((prev) => prev.filter((movie) => movie._id !== id));
+        }
+        setIsAdded(false);
+      })
+      .catch(console.log);
   };
 
   let moviesList = [];
-  movies.forEach((movieData, idx) => {
+  moviesToShow.forEach((movieData, idx) => {
     if (idx + 1 > itemsToShow) {
       return;
     }
-
     moviesList.push(
       <li className='movie-list__item' key={movieData.id || movieData.movieId}>
         <MovieCard
           {...movieData}
           onAddMovie={handleAddMovieClick}
           onDeleteMovie={handleDeleteMovieClick}
+          isMovieSaved={movieData._id ? true : false}
         />
       </li>,
     );

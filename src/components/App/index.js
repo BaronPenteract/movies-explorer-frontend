@@ -124,6 +124,8 @@ const App = () => {
     setIsloading(true);
     setTimeout(() => {
       localStorage.removeItem('jwt');
+      localStorage.removeItem('searchedMovies');
+      localStorage.removeItem('searchParams');
       setCurrentUser(null);
       setIsloading(false);
       setLoggedIn(false);

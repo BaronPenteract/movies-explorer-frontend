@@ -82,7 +82,9 @@ const Movies = () => {
         {isDataLoading ? (
           <Preloader />
         ) : (
-          messageRef.current.textContent === '' && <MoviesCardList movies={searchedMovies} />
+          messageRef.current.textContent === '' && (
+            <MoviesCardList movies={searchedMovies} isSaved={false} />
+          )
         )}
       </section>
     </>

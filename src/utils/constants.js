@@ -7,8 +7,8 @@ const ITEMS_TO_SHOW_M = 8;
 const ITEMS_TO_SHOW_S = 5;
 
 const ITEMS_TO_LOAD_L = 4;
-const ITEMS_TO_LOAD_M = 4;
-const ITEMS_TO_LOAD_S = 4;
+const ITEMS_TO_LOAD_M = 2;
+const ITEMS_TO_LOAD_S = 2;
 
 export {
   WIDTH_L,

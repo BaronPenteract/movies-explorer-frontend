@@ -40,7 +40,7 @@ const SavedMovies = () => {
         className='container container_type_saved-movie-list'
         aria-label='Список сохраненных фильмов'
       >
-        {isLoading ? <Preloader /> : <MoviesCardList movies={movies} />}
+        {isLoading ? <Preloader /> : <MoviesCardList movies={movies} isSaved={true} />}
       </section>
     </>
   );

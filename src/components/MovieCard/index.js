@@ -6,7 +6,16 @@ import { minutesToHoursAndMinutes } from '../../utils/minutesToHoursAndMinutes';
 
 import './index.css';
 
-const MovieCard = ({ owner, onAddMovie, onDeleteMovie, id, updated_at, created_at, ...movie }) => {
+const MovieCard = ({
+  owner,
+  onAddMovie,
+  onDeleteMovie,
+  id,
+  updated_at,
+  created_at,
+  isMovieSaved,
+  ...movie
+}) => {
   const {
     _id,
     country,
@@ -20,10 +29,14 @@ const MovieCard = ({ owner, onAddMovie, onDeleteMovie, id, updated_at, created_a
     nameRU,
     nameEN,
   } = movie;
+
   const [isAdded, setIsAdded] = React.useState(false);
 
+  React.useEffect(() => {
+    setIsAdded(isMovieSaved);
+  }, [isMovieSaved]);
+
   const handleAddClick = () => {
-    console.log('isAdded? ' + !isAdded);
     onAddMovie(
       {
         ...movie,
@@ -36,9 +49,8 @@ const MovieCard = ({ owner, onAddMovie, onDeleteMovie, id, updated_at, created_a
   };
 
   const handleDeleteClick = () => {
-    onDeleteMovie(_id);
+    onDeleteMovie(_id, setIsAdded);
   };
-
   return (
     <article>
       <div className='movie-card'>
@@ -66,7 +78,11 @@ const MovieCard = ({ owner, onAddMovie, onDeleteMovie, id, updated_at, created_a
               <CloseSVG className={`movie-card__svg `} />
             </button>
           ) : (
-            <button className={`movie-card__button`} onClick={handleAddClick} type='button'>
+            <button
+              className={`movie-card__button`}
+              onClick={isAdded ? handleDeleteClick : handleAddClick}
+              type='button'
+            >
               <HeartSVG
                 className={`movie-card__svg ${isAdded ? 'movie-card__svg_type_heart-active' : ''}`}
               />
