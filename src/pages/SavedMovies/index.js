@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import MoviesCardList from '../../components/MoviesCardList';
 import Preloader from '../../components/Preloader';
 import SearchForm from '../../components/SearchForm';
+import { getSavedMovies } from '../../utils/MainApi';
 
 const SavedMovies = () => {
   const navigate = useNavigate();
@@ -12,24 +13,9 @@ const SavedMovies = () => {
   const [movies, setMovies] = React.useState([]);
   // пока так
   React.useEffect(() => {
-    fetch('https://api.nomoreparties.co/beatfilm-movies')
+    getSavedMovies()
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          return Promise.reject(new Error('что-то не так.'));
-        }
-      })
-      .then((res) => {
-        const readyData = [];
-
-        res.map((item, idx) => {
-          if (idx < 50) {
-            readyData.push({ ...item, owner: { name: 'Me', _id: 42, email: 'email' } });
-          }
-        });
-
-        setMovies(readyData);
+        setMovies(res);
       })
       .catch((err) => {
         navigate('/error', { state: { statusCode: 500, message: err.message }, replace: true });

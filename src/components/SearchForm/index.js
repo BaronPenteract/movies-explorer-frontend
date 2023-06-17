@@ -5,7 +5,7 @@ import CheckBox from '../CheckBox';
 import SearchSVG from '../svg/SearchSVG';
 import './index.css';
 
-const SearchForm = ({ isShortMovies = false, searchValue = '', onSearchSubmit }) => {
+const SearchForm = ({ searchParams = { value: '', isShort: true }, onSearchSubmit }) => {
   const [isLoading, setIsloading] = React.useState(false);
   const [isCheckBoxActive, setIsCheckBoxActive] = React.useState(true);
 
@@ -13,9 +13,9 @@ const SearchForm = ({ isShortMovies = false, searchValue = '', onSearchSubmit })
   const inputElementRef = React.useRef(HTMLInputElement);
 
   React.useEffect(() => {
-    inputElementRef.current.value = searchValue;
-    setIsCheckBoxActive(isShortMovies);
-  }, [isShortMovies, searchValue]);
+    inputElementRef.current.value = searchParams.value;
+    setIsCheckBoxActive(searchParams.isShort);
+  }, [searchParams]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -27,8 +27,12 @@ const SearchForm = ({ isShortMovies = false, searchValue = '', onSearchSubmit })
       return;
     }
 
-    onSearchSubmit(inputElementRef.current.value, isCheckBoxActive, setIsloading);
+    onSearchSubmit(
+      { value: inputElementRef.current.value, isShort: isCheckBoxActive },
+      setIsloading,
+    );
 
+    inputElementRef.current.blur();
     errorElementRef.current.textContent = '';
   };
 

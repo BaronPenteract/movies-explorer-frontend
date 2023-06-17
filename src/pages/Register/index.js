@@ -33,6 +33,7 @@ const Register = ({ onRegister }) => {
               value={values.name || ''}
               onChange={handleChange}
               placeholder='Андрей'
+              pattern='[a-zA-Zа-яА-ЯёЁ\-\s]+'
               required
               minLength='2'
               maxLength='40'
@@ -86,7 +87,7 @@ const Register = ({ onRegister }) => {
           </button>
           <span className='form-auth__under-text'>
             Уже зарегистрированы?
-            <Link to='/signup' className='link form-auth__link'>
+            <Link to='/signin' className='link form-auth__link'>
               Войти
             </Link>
           </span>

@@ -10,6 +10,7 @@ import {
   ITEMS_TO_LOAD_M,
   ITEMS_TO_LOAD_S,
 } from '../../utils/constants';
+import { addMovie, removeMovie } from '../../utils/MainApi';
 
 import MovieCard from '../MovieCard';
 import './index.css';
@@ -46,6 +47,28 @@ const MoviesCardList = ({ movies }) => {
     }
   }, [screenWidth]);
 
+  const deleteMovie = (id, setIsAdded) => {
+    return removeMovie(id)
+      .then((res) => {
+        console.log(res);
+        setIsAdded(false);
+      })
+      .catch(console.log);
+  };
+
+  const handleAddMovieClick = (movie, setIsAdded) => {
+    addMovie(movie)
+      .then((res) => {
+        console.log(res);
+        setIsAdded(true);
+      })
+      .catch(console.log);
+  };
+
+  const handleDeleteMovieClick = (id, setIsAdded) => {
+    deleteMovie(id, setIsAdded);
+  };
+
   let moviesList = [];
   movies.forEach((movieData, idx) => {
     if (idx + 1 > itemsToShow) {
@@ -53,8 +76,12 @@ const MoviesCardList = ({ movies }) => {
     }
 
     moviesList.push(
-      <li className='movie-list__item' key={movieData.id}>
-        <MovieCard {...movieData} />
+      <li className='movie-list__item' key={movieData.id || movieData.movieId}>
+        <MovieCard
+          {...movieData}
+          onAddMovie={handleAddMovieClick}
+          onDeleteMovie={handleDeleteMovieClick}
+        />
       </li>,
     );
   });

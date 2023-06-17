@@ -6,30 +6,37 @@ import { minutesToHoursAndMinutes } from '../../utils/minutesToHoursAndMinutes';
 
 import './index.css';
 
-const MovieCard = ({
-  id,
-  country,
-  director,
-  duration,
-  year,
-  description,
-  image,
-  trailerLink,
-  thumbnail,
-  movieId,
-  nameRU,
-  nameEN,
-  owner,
-}) => {
-  const [isLiked, setIsLiked] = React.useState(false);
+const MovieCard = ({ owner, onAddMovie, onDeleteMovie, id, updated_at, created_at, ...movie }) => {
+  const {
+    _id,
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    movieId,
+    nameRU,
+    nameEN,
+  } = movie;
+  const [isAdded, setIsAdded] = React.useState(false);
 
-  const handleLikeClick = () => {
-    setIsLiked(!isLiked);
-    console.log('liked? ' + !isLiked);
+  const handleAddClick = () => {
+    console.log('isAdded? ' + !isAdded);
+    onAddMovie(
+      {
+        ...movie,
+        movieId: id,
+        image: 'https://api.nomoreparties.co/' + image.url,
+        thumbnail: 'https://api.nomoreparties.co/' + image.formats.thumbnail.url,
+      },
+      setIsAdded,
+    );
   };
 
   const handleDeleteClick = () => {
-    console.log('deleted');
+    onDeleteMovie(_id);
   };
 
   return (
@@ -39,7 +46,7 @@ const MovieCard = ({
           <a href={trailerLink} target='_blank' rel='noreferrer'>
             <img
               className='movie-card__image'
-              src={'https://api.nomoreparties.co/' + image.url}
+              src={owner ? image : 'https://api.nomoreparties.co/' + image.url}
               alt={nameRU}
             />
           </a>
@@ -59,9 +66,9 @@ const MovieCard = ({
               <CloseSVG className={`movie-card__svg `} />
             </button>
           ) : (
-            <button className={`movie-card__button`} onClick={handleLikeClick} type='button'>
+            <button className={`movie-card__button`} onClick={handleAddClick} type='button'>
               <HeartSVG
-                className={`movie-card__svg ${isLiked ? 'movie-card__svg_type_heart-active' : ''}`}
+                className={`movie-card__svg ${isAdded ? 'movie-card__svg_type_heart-active' : ''}`}
               />
             </button>
           )}

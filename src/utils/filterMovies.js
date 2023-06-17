@@ -1,4 +1,6 @@
-export const filterMovies = (moviesData, filterValue, isShort) => {
+export const filterMovies = (moviesData, searchParams) => {
+  const filterValue = searchParams.value;
+
   return moviesData.filter((data) => {
     return (
       data.nameRU.toLowerCase().includes(filterValue.toLowerCase()) ||

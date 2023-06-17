@@ -3,14 +3,19 @@ import React from 'react';
 import { useFormAndValidation } from '../../hooks/useFormAndValidation';
 import Preloader from '../../components/Preloader';
 import ProfileForm from '../../components/ProfileForm';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const Profile = ({ onProfileEdit, onSignOut }) => {
   const [isEditLoading, setIsEditloading] = React.useState(false);
   const [isSignOutLoading, setIsSignOutloading] = React.useState(false);
 
-  const { values, handleChange, errors, isValid, setIsValid } = useFormAndValidation();
+  const currentUser = React.useContext(CurrentUserContext);
 
-  const submitButton = React.useRef();
+  const { values, handleChange, errors, isValid, setIsValid, setValues } = useFormAndValidation();
+
+  React.useEffect(() => {
+    setValues(currentUser);
+  }, [currentUser, setValues]);
 
   React.useEffect(() => {
     setIsValid(false);
@@ -18,19 +23,23 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('ProfilePage: Запрос на редактирование профиля улетел.');
+
     onProfileEdit(values, setIsEditloading);
   };
 
   const signOutHandler = (e) => {
     e.preventDefault();
-    console.log('ProfilePage: Запрос на выход улетел.');
+
     onSignOut(setIsSignOutloading);
   };
 
   return (
     <section className='profile'>
-      <ProfileForm title='Привет, Андрей!' name='profileEditForm' onSubmit={submitHandler}>
+      <ProfileForm
+        title={`Привет, ${currentUser.name}`}
+        name='profileEditForm'
+        onSubmit={submitHandler}
+      >
         <fieldset className='profile-form__input-container'>
           <label className='profile-form__label'>
             <span className='profile-form__input-title'>Имя</span>
@@ -40,7 +49,7 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
               }`}
               type='text'
               name='name'
-              placeholder='Пример: Андрей'
+              placeholder='Андрей'
               value={values.name || ''}
               onChange={handleChange}
               required
@@ -58,7 +67,7 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
               name='email'
               onChange={handleChange}
               value={values.email || ''}
-              placeholder='Пример: pochta@yandex.ru'
+              placeholder='pochta@yandex.ru'
               required
             />
           </label>
@@ -75,7 +84,6 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
         </fieldset>
         <div className='profile-form__footer'>
           <button
-            ref={submitButton}
             className={`profile-form__btn profile-form__btn_type_submit `}
             disabled={!isValid}
             type='submit'

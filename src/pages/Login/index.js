@@ -69,7 +69,7 @@ const Login = ({ onLogin }) => {
           </button>
           <span className='form-auth__under-text'>
             Ещё не зарегистрированы?
-            <Link to='/signin' className='link form-auth__link'>
+            <Link to='/signup' className='link form-auth__link'>
               Регистрация
             </Link>
           </span>

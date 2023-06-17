@@ -4,61 +4,55 @@ import MoviesCardList from '../../components/MoviesCardList';
 import Preloader from '../../components/Preloader';
 import SearchForm from '../../components/SearchForm';
 import { filterMovies } from '../../utils/filterMovies';
-import { getDeatFilmMovies } from '../../utils/MoviesApi';
+import { getBeatFilmMovies } from '../../utils/MoviesApi';
 
 const Movies = () => {
-  let isSearched = React.useRef(false);
-  const messageRef = React.useRef(HTMLDivElement);
+  let isSearched = React.useRef(false); // -------------------------------------- was there a search?
+  const messageRef = React.useRef(HTMLDivElement); // ---------------------------- Div message element
 
-  const [movies, setMovies] = React.useState([]);
-  const [searchedMovies, setSearchedMovies] = React.useState([]);
+  const [movies, setMovies] = React.useState([]); // ----------------------------- loaded movies
+  const [searchedMovies, setSearchedMovies] = React.useState([]); // ---------------- movies after search
 
-  const [searchValue, setSearchValue] = React.useState('');
-  const [isShortMovies, setIsShortMovies] = React.useState(true);
+  const [searchParams, setSearchParams] = React.useState({ value: '', isShort: true }); //------- search parameters
 
-  const [isDataLoading, setIsDataloading] = React.useState(false);
+  const [isDataLoading, setIsDataloading] = React.useState(false); // ------------------ is data loading?
 
+  //--------------------------------------------------------- check Local Storage
   React.useEffect(() => {
-    const moviesInLocalStorage = JSON.parse(localStorage.getItem('movies'));
-    const searchValueInLocalStorage = localStorage.getItem('searchValue');
-    const isShortMoviesInLocalStorage =
-      localStorage.getItem('isShortMovies') === 'true' ? true : false;
+    const searchedMoviesInLocalStorage = JSON.parse(localStorage.getItem('searchedMovies'));
+    const searchParamsInLocalStorage = JSON.parse(localStorage.getItem('searchParams'));
 
-    if (moviesInLocalStorage) {
-      setMovies(moviesInLocalStorage);
-      isSearched.current = true;
-      console.log('Movies: ', moviesInLocalStorage);
+    if (searchedMoviesInLocalStorage) {
+      setSearchedMovies(searchedMoviesInLocalStorage);
     }
 
-    if (searchValueInLocalStorage) {
-      setSearchValue(searchValueInLocalStorage);
-      console.log('Movies: ', searchValueInLocalStorage);
-    }
-
-    if (!isShortMoviesInLocalStorage) {
-      setIsShortMovies(isShortMoviesInLocalStorage);
-      console.log('Movies: ', isShortMoviesInLocalStorage);
+    if (searchParamsInLocalStorage) {
+      setSearchParams(searchParamsInLocalStorage);
     }
   }, []);
-
+  //--------------------------------------------------------------------------------------------
+  //------------------------------------------------------------ check if nothing found
   React.useEffect(() => {
     if (isSearched.current && !searchedMovies.length) {
       messageRef.current.textContent = 'Ничего не найдено';
     }
-  }, [searchedMovies]);
-
-  const onSearchSubmit = async (value, isShortMoviesChecked, setIsSearchloading) => {
+  }, [isSearched, searchedMovies]);
+  //--------------------------------------------------------------------------------------------
+  //------------------------------------------------------------- Search Submit Function
+  const onSearchSubmit = async (searchParams, setIsSearchloading) => {
     messageRef.current.textContent = '';
     setIsDataloading(true);
     setIsSearchloading(true);
 
     if (!movies.length) {
-      await getDeatFilmMovies()
+      await getBeatFilmMovies()
         .then((res) => {
           setMovies(res);
-          setSearchedMovies(filterMovies(res, value, isShortMoviesChecked));
-          localStorage.setItem('movies', JSON.stringify(res));
-          isSearched.current = true;
+          setSearchedMovies(() => {
+            const result = filterMovies(res, searchParams);
+            localStorage.setItem('searchedMovies', JSON.stringify(result));
+            return result;
+          });
         })
         .catch((err) => {
           messageRef.current.textContent =
@@ -66,27 +60,30 @@ const Movies = () => {
           /* navigate('/error', { state: { statusCode: 500, message: err.message }, replace: true }); */
         });
     } else {
-      setSearchedMovies(filterMovies(movies, value, isShortMoviesChecked));
+      setSearchedMovies(() => {
+        const result = filterMovies(movies, searchParams);
+        localStorage.setItem('searchedMovies', JSON.stringify(result));
+        return result;
+      });
     }
 
-    localStorage.setItem('searchValue', value.toString());
-    localStorage.setItem('isShortMovies', isShortMoviesChecked);
+    isSearched.current = true;
+    localStorage.setItem('searchParams', JSON.stringify(searchParams));
     setIsSearchloading(false);
     setIsDataloading(false);
-    setIsShortMovies(isShortMoviesChecked);
-    console.log('isShortMoviesChecked', isShortMoviesChecked);
+    setSearchParams(searchParams);
   };
-  console.log(isShortMovies);
+  //--------------------------------------------------------------------------------------------
   return (
     <>
-      <SearchForm
-        isShortMovies={isShortMovies}
-        searchValue={searchValue}
-        onSearchSubmit={onSearchSubmit}
-      />
+      <SearchForm searchParams={searchParams} onSearchSubmit={onSearchSubmit} />
       <section className='container container_type_movie-list' aria-label='Список фильмов'>
         <div ref={messageRef}></div>
-        {isDataLoading ? <Preloader /> : <MoviesCardList movies={searchedMovies} />}
+        {isDataLoading ? (
+          <Preloader />
+        ) : (
+          messageRef.current.textContent === '' && <MoviesCardList movies={searchedMovies} />
+        )}
       </section>
     </>
   );
