@@ -8,16 +8,37 @@ import AuthForm from '../../components/AuthForm';
 const Register = ({ onRegister }) => {
   const [isLoading, setIsloading] = React.useState(false);
 
+  const messageRef = React.useRef(HTMLDivElement); // ---------------------------- Div message element
+  const [isMassageActive, setIsMessageActive] = React.useState(false);
+
   const { values, handleChange, errors, isValid, setIsValid } = useFormAndValidation();
 
   React.useEffect(() => {
     setIsValid(false);
   }, [setIsValid]);
 
+  React.useEffect(() => {
+    if (!isMassageActive) {
+      messageRef.current.textContent = '';
+    }
+  }, [isMassageActive]);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log('RegisterPage: Запрос на регистрацию улетел.');
-    onRegister(values, setIsloading);
+
+    if (!isLoading) {
+      setIsloading(true);
+      setIsMessageActive(false);
+
+      onRegister(values)
+        .catch((err) => {
+          setIsMessageActive(true);
+          messageRef.current.textContent = err;
+        })
+        .finally(() => {
+          setIsloading(false);
+        });
+    }
   };
 
   return (
@@ -78,6 +99,10 @@ const Register = ({ onRegister }) => {
           </label>
         </fieldset>
         <div className='form-auth__footer'>
+          <div
+            className={`info-message ${isMassageActive ? 'info-message_type_error' : ''}`}
+            ref={messageRef}
+          ></div>
           <button
             className={`form-auth__btn form-auth__btn_type_submit `}
             disabled={!isValid}

@@ -57,32 +57,21 @@ const App = () => {
   }, []);
   //-----------------------------------------------------------------------------------
   //----------------------------------------------------------------- on login
-  const onLogin = ({ email, password }, setIsloading) => {
-    setIsloading(true);
+  const onLogin = ({ email, password }) => {
+    return login({ email, password }).then((res) => {
+      localStorage.setItem('jwt', res.token);
 
-    login({ email, password })
-      .then((res) => {
-        localStorage.setItem('jwt', res.token);
-
-        return getUser(res.token).then((res) => {
-          setCurrentUser(res);
-          setLoggedIn(true);
-          navigate('/movies', { replace: true });
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsloading(false);
+      return getUser(res.token).then((res) => {
+        setCurrentUser(res);
+        setLoggedIn(true);
+        navigate('/movies', { replace: true });
       });
+    });
   };
   //-----------------------------------------------------------------------------------
   //----------------------------------------------------------------- on Register
-  const onRegister = ({ name, email, password }, setIsloading) => {
-    setIsloading(true);
-
-    register({ name, email, password })
+  const onRegister = ({ name, email, password }) => {
+    return register({ name, email, password })
       .then((res) => {
         setCurrentUser(res);
 
@@ -92,31 +81,15 @@ const App = () => {
         setLoggedIn(true);
         localStorage.setItem('jwt', res.token);
         navigate('/movies', { replace: true });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsloading(false);
       });
   };
   //-----------------------------------------------------------------------------------
   //----------------------------------------------------------------- on ProfileEdit
-  const onProfileEdit = ({ name, email }, setIsloading) => {
-    setIsloading(true);
-
-    console.log({ name, email });
-
-    patchUser({ name, email })
-      .then((res) => {
-        setCurrentUser(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        setIsloading(false);
-      });
+  const onProfileEdit = ({ name, email }) => {
+    return patchUser({ name, email }).then((res) => {
+      setCurrentUser(res);
+      return res;
+    });
   };
   //-----------------------------------------------------------------------------------
   //----------------------------------------------------------------- on SignOut
@@ -173,8 +146,16 @@ const App = () => {
                 />
               }
             />
-            <Route path='/signin' element={<Login onLogin={onLogin} />} />
-            <Route path='/signup' element={<Register onRegister={onRegister} />} />
+            <Route
+              path='/signin'
+              element={loggedIn ? <Navigate to='/' replace /> : <Login onLogin={onLogin} />}
+            />
+            <Route
+              path='/signup'
+              element={
+                loggedIn ? <Navigate to='/' replace /> : <Register onRegister={onRegister} />
+              }
+            />
             <Route path='/error' element={<Error />} />
             <Route path='/*' element={<Navigate to='/error' replace />} />
           </Routes>

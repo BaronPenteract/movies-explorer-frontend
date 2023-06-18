@@ -67,7 +67,7 @@ const MovieCard = ({
       .then((res) => {
         setIsAdded(false);
       })
-      .catch(console.log)
+      .catch(console.error)
       .finally(() => {
         setIsButtonDisabled(false);
       });

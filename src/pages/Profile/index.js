@@ -9,6 +9,10 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
   const [isEditLoading, setIsEditloading] = React.useState(false);
   const [isSignOutLoading, setIsSignOutloading] = React.useState(false);
 
+  const messageRef = React.useRef(HTMLDivElement); // ---------------------------- Div message element
+  const [isMassageActive, setIsMessageActive] = React.useState(false);
+  const [isMassageError, setIsMessageError] = React.useState(false);
+
   const currentUser = React.useContext(CurrentUserContext);
 
   const { values, handleChange, errors, isValid, setIsValid, setValues } = useFormAndValidation();
@@ -24,13 +28,32 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    onProfileEdit(values, setIsEditloading);
+    if (!isEditLoading) {
+      setIsEditloading(true);
+
+      onProfileEdit(values)
+        .then((res) => {
+          setIsMessageError(false);
+          setIsMessageActive(true);
+          messageRef.current.textContent = 'Данные успешно изменены';
+        })
+        .catch((err) => {
+          setIsMessageError(true);
+          setIsMessageActive(true);
+          messageRef.current.textContent = err;
+        })
+        .finally(() => {
+          setIsEditloading(false);
+        });
+    }
   };
 
   const signOutHandler = (e) => {
     e.preventDefault();
 
-    onSignOut(setIsSignOutloading);
+    if (!isSignOutLoading) {
+      onSignOut(setIsSignOutloading);
+    }
   };
 
   return (
@@ -83,6 +106,16 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
           </span>
         </fieldset>
         <div className='profile-form__footer'>
+          <div
+            className={`info-message ${
+              !isMassageActive
+                ? ''
+                : isMassageError
+                ? 'info-message_type_error'
+                : 'info-message_active'
+            }`}
+            ref={messageRef}
+          ></div>
           <button
             className={`profile-form__btn profile-form__btn_type_submit `}
             disabled={!isValid}

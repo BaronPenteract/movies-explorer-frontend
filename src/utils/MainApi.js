@@ -1,11 +1,11 @@
-import { BASE_URL } from './constants';
+import { AUTHORIZATION_ERROR_MESSAGE, BASE_URL } from './constants';
 
 const handleResponse = (result) => {
   if (result.ok) {
     return result.json();
   }
 
-  return Promise.reject(result);
+  return result.json().then((res) => Promise.reject(new Error(res.message)));
 };
 
 const register = ({ name, email, password }) => {
@@ -41,6 +41,9 @@ const getUser = (token) => {
 
 const patchUser = ({ name, email }) => {
   const token = localStorage.getItem('jwt');
+  if (!token) {
+    return Promise.reject(new Error(AUTHORIZATION_ERROR_MESSAGE));
+  }
 
   return fetch(BASE_URL + '/users/me', {
     method: 'PATCH',
@@ -55,6 +58,9 @@ const patchUser = ({ name, email }) => {
 
 const getSavedMovies = () => {
   const token = localStorage.getItem('jwt');
+  if (!token) {
+    return Promise.reject(new Error(AUTHORIZATION_ERROR_MESSAGE));
+  }
 
   return fetch(BASE_URL + '/movies', {
     method: 'GET',
@@ -67,6 +73,9 @@ const getSavedMovies = () => {
 
 const addMovie = (movie) => {
   const token = localStorage.getItem('jwt');
+  if (!token) {
+    return Promise.reject(new Error(AUTHORIZATION_ERROR_MESSAGE));
+  }
 
   return fetch(BASE_URL + '/movies', {
     method: 'POST',
@@ -81,6 +90,9 @@ const addMovie = (movie) => {
 
 const removeMovie = (id) => {
   const token = localStorage.getItem('jwt');
+  if (!token) {
+    return Promise.reject(new Error(AUTHORIZATION_ERROR_MESSAGE));
+  }
 
   return fetch(BASE_URL + '/movies/' + id, {
     method: 'DELETE',
