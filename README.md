@@ -1,6 +1,6 @@
 # Проект на сервере: [Movies Explorer](https://baron.nomoredomains.rocks/)
 
-# Проект на GitHub: [Movies Explorer](https://baronpenteract.github.io/movies-explorer-frontend/index.html)
+# [Pull Request](https://github.com/BaronPenteract/movies-explorer-frontend/pull/2)
 
 ## [Макет](<https://www.figma.com/file/75gmd5rYWCpqt4OjjoWsE6/Diploma-(Copy)?type=design&node-id=891%3A3857&t=ZUZANWCWj8HzR61J-1>)
 
