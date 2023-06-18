@@ -3,12 +3,15 @@ import React from 'react';
 import MoviesCardList from '../../components/MoviesCardList';
 import Preloader from '../../components/Preloader';
 import SearchForm from '../../components/SearchForm';
+
+import { GET_BEATFILM_ERROR_MESSAGE, NOTHING_FOUND_ERROR_MESSAGE } from '../../utils/constants';
 import { filterMovies } from '../../utils/filterMovies';
 import { getBeatFilmMovies } from '../../utils/MoviesApi';
 
 const Movies = () => {
   let isSearched = React.useRef(false); // -------------------------------------- was there a search?
   const messageRef = React.useRef(HTMLDivElement); // ---------------------------- Div message element
+  const [isMassageActive, setIsMessageActive] = React.useState(false);
 
   const [movies, setMovies] = React.useState([]); // ----------------------------- loaded movies
   const [searchedMovies, setSearchedMovies] = React.useState([]); // ---------------- movies after search
@@ -29,12 +32,17 @@ const Movies = () => {
     if (searchParamsInLocalStorage) {
       setSearchParams(searchParamsInLocalStorage);
     }
+    // если список фильмов пустой в LS, то отображаем, что ничего не найдено
+    if (searchParamsInLocalStorage && !searchedMoviesInLocalStorage.length) {
+      isSearched.current = true;
+    }
   }, []);
   //--------------------------------------------------------------------------------------------
   //------------------------------------------------------------ check if nothing found
   React.useEffect(() => {
     if (isSearched.current && !searchedMovies.length) {
-      messageRef.current.textContent = 'Ничего не найдено';
+      messageRef.current.textContent = NOTHING_FOUND_ERROR_MESSAGE;
+      setIsMessageActive(true);
     }
   }, [isSearched, searchedMovies]);
   //--------------------------------------------------------------------------------------------
@@ -43,6 +51,7 @@ const Movies = () => {
     messageRef.current.textContent = '';
     setIsDataloading(true);
     setIsSearchloading(true);
+    setIsMessageActive(false);
 
     if (!movies.length) {
       await getBeatFilmMovies()
@@ -55,8 +64,8 @@ const Movies = () => {
           });
         })
         .catch((err) => {
-          messageRef.current.textContent =
-            'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
+          messageRef.current.textContent = GET_BEATFILM_ERROR_MESSAGE;
+          setIsMessageActive(true);
           /* navigate('/error', { state: { statusCode: 500, message: err.message }, replace: true }); */
         });
     } else {
@@ -78,13 +87,14 @@ const Movies = () => {
     <>
       <SearchForm searchParams={searchParams} onSearchSubmit={onSearchSubmit} />
       <section className='container container_type_movie-list' aria-label='Список фильмов'>
-        <div ref={messageRef}></div>
+        <div
+          className={`info-message ${isMassageActive ? 'info-message_active' : ''}`}
+          ref={messageRef}
+        ></div>
         {isDataLoading ? (
           <Preloader />
         ) : (
-          messageRef.current.textContent === '' && (
-            <MoviesCardList movies={searchedMovies} isSaved={false} />
-          )
+          !isMassageActive && <MoviesCardList movies={searchedMovies} isSavedMoviesPage={false} />
         )}
       </section>
     </>

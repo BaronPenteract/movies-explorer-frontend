@@ -9,7 +9,7 @@ import {
   ITEMS_TO_LOAD_L,
   ITEMS_TO_LOAD_M,
   ITEMS_TO_LOAD_S,
-} from '../utils/constants';
+} from '../utils/constantsUseScreenResize';
 
 export function useScreenResize() {
   const [screenWidth, setScreenWidth] = React.useState(WIDTH_L);

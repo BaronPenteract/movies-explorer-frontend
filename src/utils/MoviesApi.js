@@ -1,5 +1,7 @@
+import { BEATFILM_BASE_URL } from './constants';
+
 const getBeatFilmMovies = () => {
-  return fetch('https://api.nomoreparties.co/beatfilm-movies').then((res) => {
+  return fetch(BEATFILM_BASE_URL + '/beatfilm-movies').then((res) => {
     if (res.ok) {
       return res.json();
     } else {

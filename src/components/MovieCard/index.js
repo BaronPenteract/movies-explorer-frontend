@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { BEATFILM_BASE_URL } from '../../utils/constants';
+
 import HeartSVG from '../svg/HeartSVG';
 import CloseSVG from '../svg/CloseSVG';
 import { minutesToHoursAndMinutes } from '../../utils/minutesToHoursAndMinutes';
@@ -12,16 +14,15 @@ const MovieCard = ({
   onDeleteMovie,
   // вытаскиваем id из будущего объекта movie, чтобы перезаписать его как movieId, т.к. в mongoDB нет id, а есть movieId...
   id,
+  // +/- тоже самое для сдедующих 2х
   updated_at,
   created_at,
-  isMovieSaved,
+  isSavedMoviesPage,
   // вот этот будущий movie, который уже нынешний
   ...movie
 }) => {
-  const { /* _id, */ duration, image, trailerLink, nameRU } = movie;
+  const { duration, image, trailerLink, nameRU } = movie;
 
-  // стэйт для хранения _id в mongoDB
-  const [currentMovieId, setCurrentMovieId] = React.useState(null);
   // добавлен фильм в базу или нет
   const [isAdded, setIsAdded] = React.useState(false);
   // тут понятно
@@ -29,50 +30,49 @@ const MovieCard = ({
 
   // пока не разобрался, но при первом рендере, если записывать так:
   //
-  // const [currentMovieId, setCurrentMovieId] = React.useState(movie._id);
-  // const [isAdded, setIsAdded] = React.useState(isMovieSaved);
+  // const [isAdded, setIsAdded] = React.useState(!!owner);
   //
-  // currentMovieId === undefined
   // isAdded === undefined
-  // поэтому здесь эти 2 useEffect'а
-  React.useEffect(() => {
-    setCurrentMovieId(movie._id);
-  }, [movie._id]);
 
   React.useEffect(() => {
-    setIsAdded(isMovieSaved);
-  }, [isMovieSaved]);
+    setIsAdded(!!owner);
+  }, [owner]);
 
   //------------------------------------------- добавление фильма в базу
   const handleAddClick = () => {
     setIsButtonDisabled(true);
 
-    onAddMovie({
-      ...movie,
-      movieId: id,
-      image: 'https://api.nomoreparties.co/' + image.url,
-      thumbnail: 'https://api.nomoreparties.co/' + image.formats.thumbnail.url,
-    })
+    onAddMovie(
+      // немного корректируем объект movie, чтобы подогнать под требования базы данных
+      {
+        ...movie,
+        movieId: id,
+        image: BEATFILM_BASE_URL + '/' + image.url,
+        thumbnail: BEATFILM_BASE_URL + '/' + image.formats.thumbnail.url,
+      },
+    )
       .then((res) => {
-        //----------------здесь нам приходит _id, мы его записываем, для возможности дальйнейшего удаления
-        setCurrentMovieId(res._id);
-
         setIsAdded(true);
-        setIsButtonDisabled(false);
       })
-      .catch(console.log);
+      .catch(console.log)
+      .finally(() => {
+        setIsButtonDisabled(false);
+      });
   };
 
   const handleDeleteClick = () => {
     setIsButtonDisabled(true);
 
-    onDeleteMovie(currentMovieId, setIsAdded).then((res) => {
-      setCurrentMovieId(null);
-      setIsButtonDisabled(false);
-    });
+    onDeleteMovie(movie._id)
+      .then((res) => {
+        setIsAdded(false);
+      })
+      .catch(console.log)
+      .finally(() => {
+        setIsButtonDisabled(false);
+      });
   };
 
-  console.log('RENDER', currentMovieId, movie._id);
   return (
     <article>
       <div className='movie-card'>
@@ -80,7 +80,7 @@ const MovieCard = ({
           <a href={trailerLink} target='_blank' rel='noreferrer'>
             <img
               className='movie-card__image'
-              src={owner ? image : 'https://api.nomoreparties.co/' + image.url}
+              src={isAdded ? image : 'https://api.nomoreparties.co/' + image.url}
               alt={nameRU}
             />
           </a>
@@ -91,7 +91,7 @@ const MovieCard = ({
               {nameRU}
             </a>
           </h2>
-          {owner ? (
+          {isSavedMoviesPage ? (
             <button
               className={`movie-card__button movie-card__button_type_delete`}
               onClick={handleDeleteClick}

@@ -5,7 +5,12 @@ import CheckBox from '../CheckBox';
 import SearchSVG from '../svg/SearchSVG';
 import './index.css';
 
-const SearchForm = ({ searchParams = { value: '', isShort: true }, onSearchSubmit }) => {
+const SearchForm = ({
+  searchParams = { value: '', isShort: true },
+  onSearchSubmit,
+  // можел ли быть поле поиска пустым? Для сохраненных фильмов нужно, иначе, как отобразить обратно все сохраненные фильмы без перезагрузки страницы?
+  canBeEmptyValue = false,
+}) => {
   const [isLoading, setIsloading] = React.useState(false);
   const [isCheckBoxActive, setIsCheckBoxActive] = React.useState(true);
 
@@ -20,7 +25,8 @@ const SearchForm = ({ searchParams = { value: '', isShort: true }, onSearchSubmi
   const submitHandler = (e) => {
     e.preventDefault();
 
-    if (inputElementRef.current.value === '') {
+    // отображаем ошибку, если поле поика пустое и оно не может быть пустым
+    if (inputElementRef.current.value === '' && !canBeEmptyValue) {
       errorElementRef.current.textContent = 'Нужно ввести ключевое слово';
       inputElementRef.current.focus();
 

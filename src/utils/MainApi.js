@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.baron.nomoredomains.rocks';
+import { BASE_URL } from './constants';
 
 const handleResponse = (result) => {
   if (result.ok) {
@@ -38,10 +38,10 @@ const getUser = (token) => {
     },
   }).then(handleResponse);
 };
-//------------------------- патч юзера почему-то работает в постмане, а здесь - нет... name is required
+
 const patchUser = ({ name, email }) => {
   const token = localStorage.getItem('jwt');
-  console.log('patchUser', { name, email });
+
   return fetch(BASE_URL + '/users/me', {
     method: 'PATCH',
     headers: {
