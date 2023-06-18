@@ -1,8 +1,8 @@
 .header__link {
   color: inherit; 
-  fill: #3DDC84;
+  fill: var(--primary-accent-color);
 }
 
 .header__link:hover {
-  fill: #4285F4;
+  fill: var(--secondary-accent-color);
 }

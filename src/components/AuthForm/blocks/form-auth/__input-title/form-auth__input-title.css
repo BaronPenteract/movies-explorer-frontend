@@ -3,5 +3,5 @@
   font-size: 10px;
   line-height: 12px;
   
-  color: #8B8B8B;
+  color: var(--secondary-text-color);
 }

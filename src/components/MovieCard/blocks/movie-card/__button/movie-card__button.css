@@ -10,14 +10,14 @@
 
   border: none;
   border-radius: 50%;
-  background-color: #313131;
+  background-color: var(--quaternary-accent-color);
   cursor: pointer;
-  fill: #fff;
+  fill: var(--primary-text-color);
 
   transition: background-color .2s linear;
 }
 
 .movie-card__button:hover {
-  background-color: #3DDC84;
-  fill: #313131;
+  background-color: var(--primary-accent-color);
+  fill: var(--quaternary-accent-color);
 }

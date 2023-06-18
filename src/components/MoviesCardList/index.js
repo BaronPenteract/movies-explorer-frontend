@@ -1,5 +1,4 @@
 import React from 'react';
-import { useScreenResize } from '../../hooks/useScreenResize';
 
 import { addMovie, getSavedMovies, removeMovie } from '../../utils/MainApi';
 
@@ -7,8 +6,6 @@ import MovieCard from '../MovieCard';
 import './index.css';
 
 const MoviesCardList = ({ movies, isSavedMoviesPage }) => {
-  const { itemsToShow, itemsToLoad, setItemsToShow } = useScreenResize();
-
   const [moviesToShow, setMoviesToShow] = React.useState(movies);
 
   React.useEffect(() => {
@@ -85,10 +82,6 @@ const MoviesCardList = ({ movies, isSavedMoviesPage }) => {
   // создаем массив из <li></li> элементов с фильмами
   const moviesList = [];
   moviesToShow.forEach((movieData, idx) => {
-    // если длина массива больше, чем нужно для  показа на странице, то лишние элементы не показываем
-    if (idx + 1 > itemsToShow) {
-      return;
-    }
     moviesList.push(
       <li className='movie-list__item' key={movieData.id || movieData.movieId}>
         <MovieCard
@@ -101,21 +94,9 @@ const MoviesCardList = ({ movies, isSavedMoviesPage }) => {
     );
   });
 
-  const handleMoreButtonClick = () => {
-    // увеличиваем кол-во отображаемых элементов
-    setItemsToShow(itemsToShow + itemsToLoad);
-  };
-
   return (
     <>
       <ul className='movie-list'>{moviesList}</ul>
-      {movies.length > itemsToShow ? (
-        <button className='link more-movies-button' onClick={handleMoreButtonClick} type='button'>
-          Ещё
-        </button>
-      ) : (
-        ''
-      )}
     </>
   );
 };

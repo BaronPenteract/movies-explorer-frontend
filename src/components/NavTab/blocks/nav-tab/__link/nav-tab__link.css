@@ -18,8 +18,8 @@
   }
 
   .nav-tab__link:hover {
-    border-bottom-color: #fff;
-    color: #fff;
+    border-bottom-color: var(--primary-text-color);
+    color: var(--primary-text-color);
   }
 }
 

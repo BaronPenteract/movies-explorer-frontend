@@ -1,5 +1,5 @@
 .roadmap__uptitle_active {
-  color: #000;
+  color: var(--tertiary-text-color);
 
-  background-color: #3DDC84;
+  background-color: var(--primary-accent-color);
 }

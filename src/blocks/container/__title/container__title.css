@@ -8,7 +8,7 @@
   letter-spacing: -0.04em;
   box-sizing: border-box;
 
-  border-bottom: 1px solid #DADADA;
+  border-bottom: 1px solid var(--section-title-border-color);
 }
 
 @media screen and (max-width: 600px) {

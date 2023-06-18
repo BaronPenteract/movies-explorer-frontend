@@ -12,11 +12,11 @@
   line-height: 50px;  
   letter-spacing: -0.04em;
 
-  fill: #fff;
+  fill: var(--primary-text-color);
 }
 
 .portfolio__link:hover {
-  fill: #3DDC84;
+  fill: var(--primary-accent-color);
 }
 
 @media screen and (max-width: 1024px) {

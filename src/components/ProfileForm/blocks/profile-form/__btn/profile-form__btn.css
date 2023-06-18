@@ -25,11 +25,11 @@
 .profile-form__btn:disabled {
   opacity: .5;
   cursor: default;
-  color: #fff;
+  color: var(--primary-text-color);
 }
 
 .profile-form__btn:disabled:hover {
-  color: #fff;
+  color: var(--primary-text-color);
 }
 
 @media screen and (max-width: 600px) {

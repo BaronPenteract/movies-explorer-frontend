@@ -1,0 +1,22 @@
+:root {
+  --primary-text-color: #fff;
+  --secondary-text-color: #8B8B8B;
+  --tertiary-text-color: #000;
+
+  --primary-background-color: #202020;
+  --secondary-background-color: #272727;
+  --tertiary-background-color: #303030;
+  --quaternary-background-color: #2F2F2F;
+
+  --primary-border-color: #424242;
+  --secondary-border-color: #aaa;
+  --tertiary-border-color: #e6e6e6;
+
+  --primary-accent-color: #3DDC84;
+  --secondary-accent-color: #4285F4;
+  --tertiary-accent-color: #EE3465;
+  --tertiary-accent-active-color: #cf0037;
+  --quaternary-accent-color: #313131;
+
+  --section-title-border-color: #DADADA;
+}

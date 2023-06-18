@@ -7,5 +7,5 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 18px;
-  color: #EE3465;
+  color: var(--tertiary-accent-color);
 }

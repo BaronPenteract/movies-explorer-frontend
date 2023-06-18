@@ -1,4 +1,4 @@
 .info-message_type_error {
   display: block;
-  color: #EE3465;
+  color: var(--tertiary-accent-color);
 }

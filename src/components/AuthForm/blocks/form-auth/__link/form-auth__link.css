@@ -1,8 +1,8 @@
 .form-auth__link {
-  color: #4285F4;
-  fill: #3DDC84;
+  color: var(--secondary-accent-color);
+  fill: var(--primary-accent-color);
 }
 
 .form-auth__link:hover {
-  fill: #4285F4;
+  fill: var(--secondary-accent-color);
 }

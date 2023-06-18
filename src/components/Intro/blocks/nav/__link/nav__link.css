@@ -12,7 +12,7 @@
   line-height: 16px;
   color: inherit;
 
-  background-color: #303030;
+  background-color: var(--tertiary-background-color);
   border-radius: 10px;
   border: 1px solid transparent;
 
@@ -20,7 +20,7 @@
 }
 
 .nav__link:hover {
-  border-color: #3DDC84;
+  border-color: var(--primary-accent-color);
 }
 
 @media screen and (max-width: 600px) {

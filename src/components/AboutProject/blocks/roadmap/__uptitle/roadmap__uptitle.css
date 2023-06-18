@@ -11,7 +11,7 @@
   line-height: 17px;
   color: inherit;
 
-  background-color: #303030;
+  background-color: var(--tertiary-background-color);
 }
 
 @media screen and (max-width: 600px) {

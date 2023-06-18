@@ -1,11 +1,11 @@
 .page {
   width: 100%;
   min-height: 100vh;
-  color: #fff;
+  color: var(--primary-text-color);
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  background-color: #202020;
+  background-color: var(--primary-background-color);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

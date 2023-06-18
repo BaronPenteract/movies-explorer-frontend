@@ -1,8 +1,8 @@
 .profile-form__btn_type_signout {
   font-weight: 500;
-  color: #EE3465;
+  color: var(--tertiary-accent-color);
 }
 
 .profile-form__btn_type_signout:hover {
-  color: #cf0037;
+  color: var(--tertiary-accent-active-color);
 }

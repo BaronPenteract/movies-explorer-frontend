@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0 0 10px;
   border: none;
-  border-bottom: 1px solid #424242;
+  border-bottom: 1px solid var(--primary-border-color);
   background-color: transparent;
   
   font-weight: 400;
@@ -16,5 +16,5 @@
 
 .form-auth__input:focus {
   outline: none;
-  border-color: #4285F4;
+  border-color: var(--secondary-accent-color);
 }

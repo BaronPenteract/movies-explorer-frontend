@@ -4,11 +4,14 @@ import MoviesCardList from '../../components/MoviesCardList';
 import Preloader from '../../components/Preloader';
 import SearchForm from '../../components/SearchForm';
 
+import { useScreenResize } from '../../hooks/useScreenResize';
 import { GET_BEATFILM_ERROR_MESSAGE, NOTHING_FOUND_ERROR_MESSAGE } from '../../utils/constants';
 import { filterMovies } from '../../utils/filterMovies';
 import { getBeatFilmMovies } from '../../utils/MoviesApi';
 
 const Movies = () => {
+  const { itemsToShow, itemsToLoad, setItemsToShow } = useScreenResize();
+
   let isSearched = React.useRef(false); // -------------------------------------- was there a search?
   const messageRef = React.useRef(HTMLDivElement); // ---------------------------- Div message element
   const [isMassageActive, setIsMessageActive] = React.useState(false);
@@ -83,6 +86,20 @@ const Movies = () => {
     setSearchParams(searchParams);
   };
   //--------------------------------------------------------------------------------------------
+
+  const moviesToShow = [];
+
+  searchedMovies.forEach((serchedMovie, idx) => {
+    if (idx + 1 > itemsToShow) {
+      return;
+    }
+    moviesToShow.push(serchedMovie);
+  });
+
+  const handleMoreButtonClick = () => {
+    // увеличиваем кол-во отображаемых элементов
+    setItemsToShow(itemsToShow + itemsToLoad);
+  };
   return (
     <>
       <SearchForm searchParams={searchParams} onSearchSubmit={onSearchSubmit} />
@@ -94,9 +111,16 @@ const Movies = () => {
         {isDataLoading ? (
           <Preloader />
         ) : (
-          !isMassageActive && <MoviesCardList movies={searchedMovies} isSavedMoviesPage={false} />
+          !isMassageActive && <MoviesCardList movies={moviesToShow} isSavedMoviesPage={false} />
         )}
       </section>
+      {searchedMovies.length > itemsToShow ? (
+        <button className='link more-movies-button' onClick={handleMoreButtonClick} type='button'>
+          Ещё
+        </button>
+      ) : (
+        ''
+      )}
     </>
   );
 };

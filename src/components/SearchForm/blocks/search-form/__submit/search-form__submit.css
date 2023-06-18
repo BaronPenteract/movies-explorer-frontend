@@ -5,15 +5,15 @@
   box-sizing: border-box;
 
   border-radius: 8px;
-  background-color: #4285F4;
+  background-color: var(--secondary-accent-color);
   border-color: transparent;
   cursor: pointer;
-  fill: #fff;
+  fill: var(--primary-text-color);
 
   transition: background-color .2s linear, border-color .2s linear;
 }
 
-.search-form__submit:disabled {
+/* .search-form__submit:disabled {
   background-color: #193766;
   border-color: transparent;
   fill: #808080;
@@ -24,7 +24,7 @@
   border-color: transparent;
   fill: #808080;
   cursor: default;
-}
+} */
 
 .search-form__submit:disabled:hover
 .search-form__svg {
@@ -33,8 +33,8 @@
 
 .search-form__submit:hover {
   background-color: transparent;
-  border-color: #4285F4;
-  fill: #4285F4;
+  border-color: var(--secondary-accent-color);
+  fill: var(--secondary-accent-color);
 }
 
 .search-form__submit:hover
@@ -45,8 +45,8 @@
 .search-form__submit:focus {
   outline: none;
   background-color: transparent;
-  border-color: #4285F4;
-  fill: #4285F4;
+  border-color: var(--secondary-accent-color);
+  fill: var(--secondary-accent-color);
 }
 
 .search-form__submit:focus
