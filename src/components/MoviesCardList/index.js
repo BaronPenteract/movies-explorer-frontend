@@ -42,19 +42,36 @@ const MoviesCardList = ({ movies, isSaved }) => {
     }
   }, [isSaved, movies]);
   //--------------------------------------------------------------------------
-  const handleAddMovieClick = async (movie, setIsAdded) => {
-    await addMovie(movie)
+  const handleAddMovieClick = (movie) => {
+    return addMovie(movie); /* 
       .then((res) => {
+        setMoviesToShow((prev) =>
+          prev.map((movie) => {
+            if (movie.id === res.movieId) {
+              return { ...movie, _id: res._id };
+            }
+            return movie;
+          }),
+        );
         setIsAdded(true);
       })
-      .catch(console.log);
+      .catch(console.log); */
   };
 
   const handleDeleteMovieClick = (id, setIsAdded) => {
-    removeMovie(id)
+    return removeMovie(id)
       .then((res) => {
         if (isSaved) {
           setMoviesToShow((prev) => prev.filter((movie) => movie._id !== id));
+        } else {
+          setMoviesToShow((prev) =>
+            prev.map((movie) => {
+              if (movie._id === id) {
+                delete movie._id;
+              }
+              return movie;
+            }),
+          );
         }
         setIsAdded(false);
       })

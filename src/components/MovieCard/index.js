@@ -10,47 +10,69 @@ const MovieCard = ({
   owner,
   onAddMovie,
   onDeleteMovie,
+  // вытаскиваем id из будущего объекта movie, чтобы перезаписать его как movieId, т.к. в mongoDB нет id, а есть movieId...
   id,
   updated_at,
   created_at,
   isMovieSaved,
+  // вот этот будущий movie, который уже нынешний
   ...movie
 }) => {
-  const {
-    _id,
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailerLink,
-    movieId,
-    nameRU,
-    nameEN,
-  } = movie;
+  const { /* _id, */ duration, image, trailerLink, nameRU } = movie;
 
+  // стэйт для хранения _id в mongoDB
+  const [currentMovieId, setCurrentMovieId] = React.useState(null);
+  // добавлен фильм в базу или нет
   const [isAdded, setIsAdded] = React.useState(false);
+  // тут понятно
+  const [isButtonDisabled, setIsButtonDisabled] = React.useState(false);
+
+  // пока не разобрался, но при первом рендере, если записывать так:
+  //
+  // const [currentMovieId, setCurrentMovieId] = React.useState(movie._id);
+  // const [isAdded, setIsAdded] = React.useState(isMovieSaved);
+  //
+  // currentMovieId === undefined
+  // isAdded === undefined
+  // поэтому здесь эти 2 useEffect'а
+  React.useEffect(() => {
+    setCurrentMovieId(movie._id);
+  }, [movie._id]);
 
   React.useEffect(() => {
     setIsAdded(isMovieSaved);
   }, [isMovieSaved]);
 
+  //------------------------------------------- добавление фильма в базу
   const handleAddClick = () => {
-    onAddMovie(
-      {
-        ...movie,
-        movieId: id,
-        image: 'https://api.nomoreparties.co/' + image.url,
-        thumbnail: 'https://api.nomoreparties.co/' + image.formats.thumbnail.url,
-      },
-      setIsAdded,
-    );
+    setIsButtonDisabled(true);
+
+    onAddMovie({
+      ...movie,
+      movieId: id,
+      image: 'https://api.nomoreparties.co/' + image.url,
+      thumbnail: 'https://api.nomoreparties.co/' + image.formats.thumbnail.url,
+    })
+      .then((res) => {
+        //----------------здесь нам приходит _id, мы его записываем, для возможности дальйнейшего удаления
+        setCurrentMovieId(res._id);
+
+        setIsAdded(true);
+        setIsButtonDisabled(false);
+      })
+      .catch(console.log);
   };
 
   const handleDeleteClick = () => {
-    onDeleteMovie(_id, setIsAdded);
+    setIsButtonDisabled(true);
+
+    onDeleteMovie(currentMovieId, setIsAdded).then((res) => {
+      setCurrentMovieId(null);
+      setIsButtonDisabled(false);
+    });
   };
+
+  console.log('RENDER', currentMovieId, movie._id);
   return (
     <article>
       <div className='movie-card'>
@@ -73,6 +95,7 @@ const MovieCard = ({
             <button
               className={`movie-card__button movie-card__button_type_delete`}
               onClick={handleDeleteClick}
+              disabled={isButtonDisabled}
               type='button'
             >
               <CloseSVG className={`movie-card__svg `} />
@@ -81,6 +104,7 @@ const MovieCard = ({
             <button
               className={`movie-card__button`}
               onClick={isAdded ? handleDeleteClick : handleAddClick}
+              disabled={isButtonDisabled}
               type='button'
             >
               <HeartSVG
