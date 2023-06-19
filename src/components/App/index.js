@@ -140,6 +140,7 @@ const App = () => {
               element={
                 <ProtectedRoute
                   loggedIn={loggedIn}
+                  setCurrentUser={setCurrentUser}
                   onProfileEdit={onProfileEdit}
                   onSignOut={onSignOut}
                   element={Profile}

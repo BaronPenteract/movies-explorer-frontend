@@ -19,16 +19,16 @@ const SavedMovies = () => {
   const [isMassageActive, setIsMessageActive] = React.useState(false);
 
   const [isDataLoading, setIsDataloading] = React.useState(true);
-  const [movies, setMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [searchedMovies, setSearchedMovies] = React.useState([]);
   //------- search parameters
-  const [searchParams, setSearchParams] = React.useState({ value: '', isShort: true });
+  const [searchParams, setSearchParams] = React.useState({ value: '', isShort: false });
 
   // загружаем мувики с нашего сервера
   React.useEffect(() => {
     getSavedMovies()
       .then((res) => {
-        setMovies(res);
+        setSavedMovies(res);
         setSearchedMovies(res);
       })
       .catch((err) => {
@@ -48,13 +48,17 @@ const SavedMovies = () => {
   }, [isSearched, searchedMovies]);
   //--------------------------------------------------------------------------------------------
 
+  const deleteMovieFormSavedMovies = (_id) => {
+    setSavedMovies((prev) => prev.filter((prevMovie) => prevMovie._id !== _id));
+  };
+
   const onSearchSubmit = (searchParams, setIsSearchloading) => {
     setIsSearchloading(true);
     setIsDataloading(true);
     setIsMessageActive(false);
 
     setTimeout(() => {
-      setSearchedMovies(filterMovies(movies, searchParams));
+      setSearchedMovies(filterMovies(savedMovies, searchParams));
       setSearchParams(searchParams);
       setIsSearchloading(false);
       setIsDataloading(false);
@@ -82,7 +86,11 @@ const SavedMovies = () => {
           <Preloader />
         ) : (
           messageRef.current.textContent === '' && (
-            <MoviesCardList movies={searchedMovies} isSavedMoviesPage={true} />
+            <MoviesCardList
+              movies={searchedMovies}
+              isSavedMoviesPage={true}
+              deleteMovieFormSavedMovies={deleteMovieFormSavedMovies}
+            />
           )
         )}
       </section>

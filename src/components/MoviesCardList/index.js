@@ -5,7 +5,7 @@ import { addMovie, getSavedMovies, removeMovie } from '../../utils/MainApi';
 import MovieCard from '../MovieCard';
 import './index.css';
 
-const MoviesCardList = ({ movies, isSavedMoviesPage }) => {
+const MoviesCardList = ({ movies, isSavedMoviesPage, deleteMovieFormSavedMovies }) => {
   const [moviesToShow, setMoviesToShow] = React.useState(movies);
 
   React.useEffect(() => {
@@ -59,18 +59,23 @@ const MoviesCardList = ({ movies, isSavedMoviesPage }) => {
       .then((res) => {
         if (isSavedMoviesPage) {
           // если страница с соханенными фильмами, то удаляем его со страницы
-          setMoviesToShow((prev) => prev.filter((movie) => movie._id !== _id));
+          setMoviesToShow((prev) => prev.filter((prevMovie) => prevMovie._id !== _id));
+          deleteMovieFormSavedMovies(_id);
         } else {
           setMoviesToShow((prev) =>
             // если обычная страница с фильмами, то ищем удаленный фильм и меняем его на объект фильма с BeatFilms
             prev.map((prevMovie) => {
               let result = prevMovie;
 
-              movies.forEach((movie) => {
-                if (prevMovie.movieId === movie.id) {
-                  result = movie;
-                }
-              });
+              // ищем ту карточку, на которую нажали
+              if (prevMovie._id === _id) {
+                movies.forEach((movie) => {
+                  // теперь ищем эту карточку в фильмах из BeatFilm, чтобы положить ее вместо удаленной, и, собсна, кладем
+                  if (prevMovie.movieId === movie.id) {
+                    result = movie;
+                  }
+                });
+              }
               return result;
             }),
           );

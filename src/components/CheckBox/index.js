@@ -2,7 +2,7 @@ import React from 'react';
 
 import './index.css';
 
-const CheckBox = ({ isChecked, setIsChecked }) => {
+const CheckBox = ({ isChecked, setIsChecked, submitHandler }) => {
   return (
     <label className='checkbox'>
       <input
@@ -11,6 +11,7 @@ const CheckBox = ({ isChecked, setIsChecked }) => {
         checked={isChecked}
         onChange={() => {
           setIsChecked(!isChecked);
+          submitHandler(!isChecked);
         }}
       />
       <span

@@ -5,7 +5,7 @@ import Preloader from '../../components/Preloader';
 import ProfileForm from '../../components/ProfileForm';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-const Profile = ({ onProfileEdit, onSignOut }) => {
+const Profile = ({ onProfileEdit, onSignOut, setCurrentUser }) => {
   const [isEditLoading, setIsEditloading] = React.useState(false);
   const [isSignOutLoading, setIsSignOutloading] = React.useState(false);
 
@@ -17,30 +17,42 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
 
   const { values, handleChange, errors, isValid, setIsValid, setValues } = useFormAndValidation();
 
+  // создаем IEFE, возвращающее функцию для изменения сообщения
+  // P.S. не знаю, делают так или нет, но это работает
+  const showMessage = (function (messageRef, setIsMessageActive, setIsMessageError) {
+    return (msg, isActive, isError) => {
+      setIsMessageActive(isActive);
+      setIsMessageError(isError);
+      messageRef.current.textContent = msg;
+    };
+  })(messageRef, setIsMessageActive, setIsMessageError);
+
+  // ----------------------- заполняем инпуты из контекста
   React.useEffect(() => {
     setValues(currentUser);
   }, [currentUser, setValues]);
 
+  // ----------------------- отключаем форму
   React.useEffect(() => {
     setIsValid(false);
   }, [setIsValid]);
 
+  // ------------------------------------------------- Submit Handler
   const submitHandler = (e) => {
     e.preventDefault();
 
+    //----------------- если новые данные отправляются, делаем невозможным отправку еще одного запроса на изменение
     if (!isEditLoading) {
       setIsEditloading(true);
 
       onProfileEdit(values)
         .then((res) => {
-          setIsMessageError(false);
-          setIsMessageActive(true);
-          messageRef.current.textContent = 'Данные успешно изменены';
+          setCurrentUser(res);
+          setIsValid(false);
+          showMessage('Данные успешно изменены', true, false);
         })
         .catch((err) => {
-          setIsMessageError(true);
-          setIsMessageActive(true);
-          messageRef.current.textContent = err;
+          showMessage(err, true, true);
         })
         .finally(() => {
           setIsEditloading(false);
@@ -48,11 +60,27 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
     }
   };
 
+  // ------------------------------------------------- signOut Handler
   const signOutHandler = (e) => {
     e.preventDefault();
 
     if (!isSignOutLoading) {
       onSignOut(setIsSignOutloading);
+    }
+  };
+
+  const onChange = (e) => {
+    handleChange(e);
+    showMessage('', false, false);
+
+    const form = e.target.closest('form');
+
+    if (
+      form.elements.name.value === currentUser.name &&
+      form.elements.email.value === currentUser.email
+    ) {
+      setIsValid(false);
+      showMessage('Данные должны отличаться', true, true);
     }
   };
 
@@ -74,7 +102,7 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
               name='name'
               placeholder='Андрей'
               value={values.name || ''}
-              onChange={handleChange}
+              onChange={onChange}
               required
               minLength='2'
               maxLength='40'
@@ -88,7 +116,7 @@ const Profile = ({ onProfileEdit, onSignOut }) => {
               }`}
               type='email'
               name='email'
-              onChange={handleChange}
+              onChange={onChange}
               value={values.email || ''}
               placeholder='pochta@yandex.ru'
               required

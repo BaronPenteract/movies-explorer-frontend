@@ -16,10 +16,10 @@ const Movies = () => {
   const messageRef = React.useRef(HTMLDivElement); // ---------------------------- Div message element
   const [isMassageActive, setIsMessageActive] = React.useState(false);
 
-  const [movies, setMovies] = React.useState([]); // ----------------------------- loaded movies
+  const [beatFilmMovies, setBeatFilmMovies] = React.useState([]); // ----------------------------- loaded beatFilmMovies
   const [searchedMovies, setSearchedMovies] = React.useState([]); // ---------------- movies after search
 
-  const [searchParams, setSearchParams] = React.useState({ value: '', isShort: true }); //------- search parameters
+  const [searchParams, setSearchParams] = React.useState({ value: '', isShort: false }); //------- search parameters
 
   const [isDataLoading, setIsDataloading] = React.useState(false); // ------------------ is data loading?
 
@@ -56,10 +56,10 @@ const Movies = () => {
     setIsSearchloading(true);
     setIsMessageActive(false);
 
-    if (!movies.length) {
+    if (!beatFilmMovies.length) {
       await getBeatFilmMovies()
         .then((res) => {
-          setMovies(res);
+          setBeatFilmMovies(res);
           setSearchedMovies(() => {
             const result = filterMovies(res, searchParams);
             localStorage.setItem('searchedMovies', JSON.stringify(result));
@@ -73,7 +73,7 @@ const Movies = () => {
         });
     } else {
       setSearchedMovies(() => {
-        const result = filterMovies(movies, searchParams);
+        const result = filterMovies(beatFilmMovies, searchParams);
         localStorage.setItem('searchedMovies', JSON.stringify(result));
         return result;
       });
@@ -114,7 +114,7 @@ const Movies = () => {
           !isMassageActive && <MoviesCardList movies={moviesToShow} isSavedMoviesPage={false} />
         )}
       </section>
-      {searchedMovies.length > itemsToShow ? (
+      {searchedMovies.length > itemsToShow && !isDataLoading ? (
         <button className='link more-movies-button' onClick={handleMoreButtonClick} type='button'>
           Ещё
         </button>

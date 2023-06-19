@@ -6,13 +6,13 @@ import SearchSVG from '../svg/SearchSVG';
 import './index.css';
 
 const SearchForm = ({
-  searchParams = { value: '', isShort: true },
+  searchParams = { value: '', isShort: false },
   onSearchSubmit,
   // можел ли быть поле поиска пустым? Для сохраненных фильмов нужно, иначе, как отобразить обратно все сохраненные фильмы без перезагрузки страницы?
   canBeEmptyValue = false,
 }) => {
   const [isLoading, setIsloading] = React.useState(false);
-  const [isCheckBoxActive, setIsCheckBoxActive] = React.useState(true);
+  const [isCheckBoxActive, setIsCheckBoxActive] = React.useState(false);
 
   const errorElementRef = React.useRef(HTMLSpanElement);
   const inputElementRef = React.useRef(HTMLInputElement);
@@ -22,9 +22,7 @@ const SearchForm = ({
     setIsCheckBoxActive(searchParams.isShort);
   }, [searchParams]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-
+  const submitHandler = (isShort) => {
     // отображаем ошибку, если поле поика пустое и оно не может быть пустым
     if (inputElementRef.current.value === '' && !canBeEmptyValue) {
       errorElementRef.current.textContent = 'Нужно ввести ключевое слово';
@@ -33,10 +31,7 @@ const SearchForm = ({
       return;
     }
 
-    onSearchSubmit(
-      { value: inputElementRef.current.value, isShort: isCheckBoxActive },
-      setIsloading,
-    );
+    onSearchSubmit({ value: inputElementRef.current.value, isShort: isShort }, setIsloading);
 
     inputElementRef.current.blur();
     errorElementRef.current.textContent = '';
@@ -47,7 +42,10 @@ const SearchForm = ({
       <form
         className='search-form'
         name='searchForm'
-        onSubmit={submitHandler}
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitHandler(isCheckBoxActive);
+        }}
         action='/'
         noValidate
       >
@@ -65,7 +63,11 @@ const SearchForm = ({
           </button>
         </fieldset>
         <span ref={errorElementRef} className='search-form__error'></span>
-        <CheckBox isChecked={isCheckBoxActive} setIsChecked={setIsCheckBoxActive} />
+        <CheckBox
+          isChecked={isCheckBoxActive}
+          setIsChecked={setIsCheckBoxActive}
+          submitHandler={submitHandler}
+        />
       </form>
     </section>
   );
