@@ -13,18 +13,16 @@
   transition: background-color .2s linear, border-color .2s linear;
 }
 
-/* .search-form__submit:disabled {
-  background-color: #193766;
-  border-color: transparent;
-  fill: #808080;
+.search-form__submit:disabled {
+  opacity: .5;
 }
 
 .search-form__submit:disabled:hover {
-  background-color: #193766;
+  background-color: var(--secondary-accent-color);
   border-color: transparent;
-  fill: #808080;
+  fill: var(--primary-text-color);
   cursor: default;
-} */
+}
 
 .search-form__submit:disabled:hover
 .search-form__svg {

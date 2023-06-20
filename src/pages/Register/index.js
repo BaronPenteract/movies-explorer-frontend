@@ -58,6 +58,7 @@ const Register = ({ onRegister }) => {
               required
               minLength='2'
               maxLength='40'
+              disabled={isLoading}
             />
             <span className={`form-auth__error ${errors.name ? 'form-auth__error_active' : ''}`}>
               {errors.name || ''}
@@ -72,6 +73,7 @@ const Register = ({ onRegister }) => {
               onChange={handleChange}
               value={values.email || ''}
               placeholder='pochta@yandex.ru'
+              disabled={isLoading}
               required
             />
             <span className={`form-auth__error ${errors.email ? 'form-auth__error_active' : ''}`}>
@@ -89,6 +91,7 @@ const Register = ({ onRegister }) => {
               placeholder='********'
               minLength={8}
               maxLength={30}
+              disabled={isLoading}
               required
             />
             <span

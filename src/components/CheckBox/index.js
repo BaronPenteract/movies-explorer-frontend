@@ -2,20 +2,25 @@ import React from 'react';
 
 import './index.css';
 
-const CheckBox = ({ isChecked, setIsChecked, submitHandler }) => {
+const CheckBox = ({ isChecked, setIsChecked, submitHandler, isDisabled }) => {
+  const handleChenge = (e) => {
+    setIsChecked(!isChecked);
+    submitHandler(!isChecked);
+  };
+
   return (
     <label className='checkbox'>
       <input
         className='checkbox__input'
         type='checkbox'
         checked={isChecked}
-        onChange={() => {
-          setIsChecked(!isChecked);
-          submitHandler(!isChecked);
-        }}
+        disabled={isDisabled}
+        onChange={handleChenge}
       />
       <span
-        className={`checkbox__custom ${isChecked ? 'checkbox__custom_active' : ''}`}
+        className={`checkbox__custom ${isChecked ? 'checkbox__custom_active' : ''} ${
+          isDisabled ? 'checkbox__custom_disabled' : ''
+        }`}
         aria-hidden='true'
       >
         <span

@@ -43,11 +43,11 @@ const Movies = () => {
   //--------------------------------------------------------------------------------------------
   //------------------------------------------------------------ check if nothing found
   React.useEffect(() => {
-    if (isSearched.current && !searchedMovies.length) {
+    if (isSearched.current && !searchedMovies.length && !isDataLoading) {
       messageRef.current.textContent = NOTHING_FOUND_ERROR_MESSAGE;
       setIsMessageActive(true);
     }
-  }, [isSearched, searchedMovies]);
+  }, [isDataLoading, isSearched, searchedMovies]);
   //--------------------------------------------------------------------------------------------
   //------------------------------------------------------------- Search Submit Function
   const onSearchSubmit = async (searchParams, setIsSearchloading) => {
@@ -81,9 +81,13 @@ const Movies = () => {
 
     isSearched.current = true;
     localStorage.setItem('searchParams', JSON.stringify(searchParams));
-    setIsSearchloading(false);
-    setIsDataloading(false);
     setSearchParams(searchParams);
+
+    // делаем задержку, чтобы пользователь не мог часто нажимать на поиск
+    setTimeout(() => {
+      setIsDataloading(false);
+      setIsSearchloading(false);
+    }, 1000);
   };
   //--------------------------------------------------------------------------------------------
 
@@ -102,7 +106,12 @@ const Movies = () => {
   };
   return (
     <>
-      <SearchForm searchParams={searchParams} onSearchSubmit={onSearchSubmit} />
+      <SearchForm
+        searchParams={searchParams}
+        onSearchSubmit={onSearchSubmit}
+        canBeEmptyValue={false}
+        isDataLoading={isDataLoading}
+      />
       <section className='container container_type_movie-list' aria-label='Список фильмов'>
         <div
           className={`info-message ${isMassageActive ? 'info-message_active' : ''}`}

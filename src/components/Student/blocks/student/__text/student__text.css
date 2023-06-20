@@ -1,5 +1,5 @@
 .student__text {
-  margin: 0;
+  margin: 0 0 6px;
   padding: 0;
 
   color: inherit;
@@ -17,8 +17,6 @@
 
 @media screen and (max-width: 600px) {
   .student__text {
-    margin-bottom: 40px;
-    
     font-size: 11px;
     line-height: 16px;
   }

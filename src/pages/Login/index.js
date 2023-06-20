@@ -47,6 +47,7 @@ const Login = ({ onLogin }) => {
               onChange={handleChange}
               value={values.email || ''}
               placeholder='pochta@yandex.ru'
+              disabled={isLoading}
               required
             />
             <span className={`form-auth__error ${errors.email ? 'form-auth__error_active' : ''}`}>
@@ -64,6 +65,7 @@ const Login = ({ onLogin }) => {
               placeholder='********'
               minLength={8}
               maxLength={30}
+              disabled={isLoading}
               required
             />
             <span

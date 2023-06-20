@@ -11,13 +11,26 @@ const Student = ({ id, title }) => {
         <div className='student__content'>
           <div className='student__about'>
             <h3 className='student__name'>Андрей</h3>
-            <p className='student__info'>Фронтенд-разработчик, 30 лет</p>
+            <p className='student__info'>React-разработчик, 29 лет</p>
             <p className='student__text'>
-              Я&nbsp;родился и&nbsp;живу в&nbsp;Саратове, закончил факультет экономики СГУ.
-              У&nbsp;меня есть жена и&nbsp;дочь. Я&nbsp;люблю слушать музыку, а&nbsp;ещё увлекаюсь
-              бегом. Недавно начал кодить. С 2015 года работал в&nbsp;компании &laquo;СКБ
-              Контур&raquo;. После того, как прошёл курс по&nbsp;веб-разработке, начал заниматься
-              фриланс-заказами и&nbsp;ушёл с&nbsp;постоянной работы.
+              Я&nbsp;родился в&nbsp;р.п. <nobr>Верх-Чебула</nobr>. Учился в&nbsp;Кемеровском Гос.
+              Университете. Окончил бакалавриат и&nbsp;магистратуру по&nbsp;направлению
+              &laquo;Физика&raquo;, и&nbsp;то, и&nbsp;то&nbsp;с&nbsp;отличием. Работал в&nbsp;разных
+              сферах и&nbsp;разных городах от&nbsp;Кемерово до&nbsp;Новороссийска.
+            </p>
+            <p className='student__text'>
+              Недавно начал кодить, понравилось (почему раньше этим не&nbsp;занялся?).
+            </p>
+            <p className='student__text'>
+              Пошел на&nbsp;курсы от&nbsp;Яндекса на&nbsp;<nobr>web-разработчика</nobr>. Было
+              довольно таки легко, за&nbsp;исключением 4-х&nbsp;&mdash; 5-ти моментов. Вношу
+              финальные правки в&nbsp;дипломную работу) После зачета по&nbsp;нему, поставлю
+              на&nbsp;свой комп <nobr>какой-нибудь</nobr> из&nbsp;&laquo;линуксов&raquo;, давно
+              об&nbsp;этом думаю.
+            </p>
+            <p className='student__text'>Сейчас обосновался в&nbsp;Новосибирске.</p>
+            <p className='student__text'>
+              Решил <nobr>все-таки</nobr> написать пару слов о&nbsp;себе.
             </p>
           </div>
           <a

@@ -26,6 +26,10 @@
   outline: 1px solid var(--secondary-accent-color);
 }
 
+.search-form__input:disabled {
+  color: var(--secondary-text-color)
+}
+
 @media screen and (max-width: 600px) {
   .search-form__input {
     padding: 0 13px;

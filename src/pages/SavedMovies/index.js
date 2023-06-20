@@ -56,15 +56,16 @@ const SavedMovies = () => {
     setIsSearchloading(true);
     setIsDataloading(true);
     setIsMessageActive(false);
+    setSearchParams(searchParams);
+    isSearched.current = true;
+    messageRef.current.textContent = '';
 
+    // делаем задержку, чтобы пользователь не мог часто нажимать на поиск
     setTimeout(() => {
       setSearchedMovies(filterMovies(savedMovies, searchParams));
-      setSearchParams(searchParams);
-      setIsSearchloading(false);
       setIsDataloading(false);
-      isSearched.current = true;
-      messageRef.current.textContent = '';
-    }, 500);
+      setIsSearchloading(false);
+    }, 1000);
   };
 
   return (
@@ -73,6 +74,7 @@ const SavedMovies = () => {
         searchParams={searchParams}
         onSearchSubmit={onSearchSubmit}
         canBeEmptyValue={true}
+        isDataLoading={isDataLoading}
       />
       <section
         className='container container_type_saved-movie-list'

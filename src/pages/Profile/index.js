@@ -103,6 +103,7 @@ const Profile = ({ onProfileEdit, onSignOut, setCurrentUser }) => {
               placeholder='Андрей'
               value={values.name || ''}
               onChange={onChange}
+              disabled={isEditLoading}
               required
               minLength='2'
               maxLength='40'
@@ -119,6 +120,7 @@ const Profile = ({ onProfileEdit, onSignOut, setCurrentUser }) => {
               onChange={onChange}
               value={values.email || ''}
               placeholder='pochta@yandex.ru'
+              disabled={isEditLoading}
               required
             />
           </label>
