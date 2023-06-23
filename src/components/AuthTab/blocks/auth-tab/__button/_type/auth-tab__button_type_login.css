@@ -9,9 +9,9 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
-  color: #000;
+  color: var(--tertiary-text-color);
   
-  background-color: #3DDC84;
+  background-color: var(--primary-accent-color);
   border: 1px solid transparent;
   border-radius: 3px;
 
@@ -20,7 +20,7 @@
 
 .auth-tab__button_type_login:hover {
   background-color: transparent;
-  border: 1px solid #3DDC84;
+  border: 1px solid var(--primary-accent-color);
 }
 
 @media screen and (max-width: 600px) {

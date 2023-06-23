@@ -14,7 +14,7 @@
   letter-spacing: -0.04em;
 
   border-radius: 10px;
-  background-color: #303030;
+  background-color: var(--tertiary-background-color);
 }
 
 @media screen and (max-width: 1024px) {

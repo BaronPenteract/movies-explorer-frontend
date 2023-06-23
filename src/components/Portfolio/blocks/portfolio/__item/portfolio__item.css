@@ -5,11 +5,11 @@
 }
 
 .portfolio__item:not(:last-child) {
-  border-bottom: 1px solid #424242;
+  border-bottom: 1px solid var(--primary-border-color);
 }
 
 @media screen and (max-width: 1024px) {
   .portfolio__item:not(:last-child) {
-    border-color: #e6e6e6;
+    border-color: var(--tertiary-border-color);
   }
 }

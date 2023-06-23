@@ -1,0 +1,4 @@
+.info-message_type_error {
+  display: block;
+  color: var(--tertiary-accent-color);
+}

@@ -1,27 +1,46 @@
 import React from 'react';
 
-import { useFormAndValidation } from '../../hooks/useFormAndValidation';
-
 import Preloader from '../Preloader';
 import CheckBox from '../CheckBox';
 import SearchSVG from '../svg/SearchSVG';
 import './index.css';
 
-const SearchForm = ({ onSearchSubmit }) => {
+const SearchForm = ({
+  searchParams = { value: '', isShort: false },
+  onSearchSubmit,
+  isDataLoading,
+  // можел ли быть поле поиска пустым? Для сохраненных фильмов нужно, иначе, как отобразить обратно все сохраненные фильмы без перезагрузки страницы?
+  canBeEmptyValue = false,
+}) => {
   const [isLoading, setIsloading] = React.useState(false);
-  const [isChecked, setIsChecked] = React.useState(true);
+  const [isCheckBoxActive, setIsCheckBoxActive] = React.useState(false);
 
-  const { values, handleChange, isValid, setIsValid } = useFormAndValidation();
+  const errorElementRef = React.useRef(HTMLSpanElement);
+  const inputElementRef = React.useRef(HTMLInputElement);
+
+  const isDisabled = isDataLoading || isLoading;
 
   React.useEffect(() => {
-    setIsValid(false);
-  }, [setIsValid]);
+    inputElementRef.current.value = searchParams.value;
+    setIsCheckBoxActive(searchParams.isShort);
+  }, [searchParams]);
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  const submitHandler = (isShort) => {
+    if (isLoading) {
+      return;
+    }
+    // отображаем ошибку, если поле поика пустое и оно не может быть пустым
+    if (inputElementRef.current.value === '' && !canBeEmptyValue) {
+      errorElementRef.current.textContent = 'Нужно ввести ключевое слово';
+      inputElementRef.current.focus();
 
-    console.log('SearchForm: Запрос на поиск улетел.');
-    onSearchSubmit(setIsloading);
+      return;
+    }
+
+    onSearchSubmit({ value: inputElementRef.current.value, isShort: isShort }, setIsloading);
+
+    inputElementRef.current.blur();
+    errorElementRef.current.textContent = '';
   };
 
   return (
@@ -29,26 +48,34 @@ const SearchForm = ({ onSearchSubmit }) => {
       <form
         className='search-form'
         name='searchForm'
-        onSubmit={submitHandler}
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitHandler(isCheckBoxActive);
+        }}
         action='/'
         noValidate
       >
         <fieldset className='search-form__fieldset'>
           <input
+            ref={inputElementRef}
             className='search-form__input'
             type='text'
             name='searchValue'
             placeholder='Фильм'
-            onChange={handleChange}
-            value={values.searchValue || ''}
             required
-            minLength={2}
+            disabled={isDisabled}
           />
-          <button className='search-form__submit' type='submit' disabled={!isValid}>
+          <button disabled={isDisabled} className='search-form__submit' type='submit'>
             {isLoading ? <Preloader /> : <SearchSVG className='search-form__svg' />}
           </button>
         </fieldset>
-        <CheckBox isChecked={isChecked} setIsChecked={setIsChecked} />
+        <span ref={errorElementRef} className='search-form__error'></span>
+        <CheckBox
+          isDisabled={isDisabled}
+          isChecked={isCheckBoxActive}
+          setIsChecked={setIsCheckBoxActive}
+          submitHandler={submitHandler}
+        />
       </form>
     </section>
   );

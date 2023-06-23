@@ -6,5 +6,5 @@
   line-height: 12px;
   opacity: 0;
   
-  color: #EE3465;
+  color: var(--tertiary-accent-color);
 }

@@ -9,95 +9,167 @@ import Main from '../../pages/Main';
 import Movies from '../../pages/Movies';
 import SavedMovies from '../../pages/SavedMovies';
 import Register from '../../pages/Register';
-
-import './index.css';
 import Login from '../../pages/Login';
 import Profile from '../../pages/Profile';
 import Error from '../../pages/Error';
+import Preloader from '../Preloader';
+
+import './index.css';
+
+import { getUser, login, patchUser, register } from '../../utils/MainApi';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const App = () => {
   const navigate = useNavigate();
 
-  const [loggedIn, setLoggedIn] = React.useState(true);
+  const [currentUser, setCurrentUser] = React.useState(React.useContext(CurrentUserContext));
 
-  const onLogin = (values, setIsloading) => {
-    setIsloading(true);
-    setTimeout(() => {
-      console.log('App: logined');
-      setIsloading(false);
-      setLoggedIn(true);
-      navigate('/movies');
-    }, 1000);
+  const [isPageLoading, setIsPageloading] = React.useState(true);
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  //-------------------------------------------------get user data
+  React.useEffect(() => {
+    const token = localStorage.getItem('jwt');
+
+    const fetchUser = (token) => {
+      return new Promise((resolve, reject) => {
+        if (token) {
+          return getUser(token)
+            .then((res) => {
+              setCurrentUser(res);
+              setLoggedIn(true);
+              resolve();
+            })
+            .catch(reject);
+        }
+
+        resolve();
+      });
+    };
+
+    fetchUser(token)
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsPageloading(false);
+      });
+  }, []);
+  //-----------------------------------------------------------------------------------
+  //----------------------------------------------------------------- on login
+  const onLogin = ({ email, password }) => {
+    return login({ email, password }).then((res) => {
+      localStorage.setItem('jwt', res.token);
+
+      return getUser(res.token).then((res) => {
+        setCurrentUser(res);
+        setLoggedIn(true);
+        navigate('/movies', { replace: true });
+      });
+    });
   };
+  //-----------------------------------------------------------------------------------
+  //----------------------------------------------------------------- on Register
+  const onRegister = ({ name, email, password }) => {
+    return register({ name, email, password })
+      .then((res) => {
+        setCurrentUser(res);
 
-  const onRegister = (values, setIsloading) => {
-    setIsloading(true);
-    setTimeout(() => {
-      console.log('App: registered');
-      setIsloading(false);
-      navigate('/signup');
-    }, 1000);
+        return login({ email, password });
+      })
+      .then((res) => {
+        setLoggedIn(true);
+        localStorage.setItem('jwt', res.token);
+        navigate('/movies', { replace: true });
+      });
   };
-
-  const onProfileEdit = (values, setIsloading) => {
-    setIsloading(true);
-    setTimeout(() => {
-      console.log('App: edited');
-      setIsloading(false);
-    }, 1000);
+  //-----------------------------------------------------------------------------------
+  //----------------------------------------------------------------- on ProfileEdit
+  const onProfileEdit = ({ name, email }) => {
+    return patchUser({ name, email }).then((res) => {
+      setCurrentUser(res);
+      return res;
+    });
   };
-
+  //-----------------------------------------------------------------------------------
+  //----------------------------------------------------------------- on SignOut
   const onSignOut = (setIsloading) => {
     setIsloading(true);
     setTimeout(() => {
-      console.log('App: signed out');
+      localStorage.removeItem('jwt');
+      localStorage.removeItem('searchedMovies');
+      localStorage.removeItem('searchParams');
+      setCurrentUser(null);
       setIsloading(false);
       setLoggedIn(false);
       navigate('/');
-    }, 1000);
+    }, 500);
   };
+  //-----------------------------------------------------------------------------------
+
+  if (isPageLoading) {
+    return (
+      <div className='page'>
+        <Preloader />
+      </div>
+    );
+  }
 
   return (
-    <div className='page'>
-      <Routes>
-        <Route path='/signup' element={<></>} />
-        <Route path='/signin' element={<></>} />
-        <Route path='/error' element={<></>} />
-        <Route path='/*' element={<Header loggedIn={loggedIn} />} />
-      </Routes>
-      <main className='content'>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className='page'>
         <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/movies' element={<ProtectedRoute loggedIn={loggedIn} element={Movies} />} />
-          <Route
-            path='/saved-movies'
-            element={<ProtectedRoute loggedIn={loggedIn} element={SavedMovies} />}
-          />
-          <Route
-            path='/profile'
-            element={
-              <ProtectedRoute
-                loggedIn={loggedIn}
-                onProfileEdit={onProfileEdit}
-                onSignOut={onSignOut}
-                element={Profile}
-              />
-            }
-          />
-          <Route path='/signup' element={<Login onLogin={onLogin} />} />
-          <Route path='/signin' element={<Register onRegister={onRegister} />} />
-          <Route path='/error' element={<Error />} />
-          <Route path='/*' element={<Navigate to='/error' replace />} />
+          <Route path='/signup' element={<></>} />
+          <Route path='/signin' element={<></>} />
+          <Route path='/error' element={<></>} />
+          <Route path='/*' element={<Header loggedIn={loggedIn} />} />
         </Routes>
-      </main>
-      <Routes>
-        <Route path='/signup' element={<></>} />
-        <Route path='/signin' element={<></>} />
-        <Route path='/profile' element={<></>} />
-        <Route path='/error' element={<></>} />
-        <Route path='/*' element={<Footer />} />
-      </Routes>
-    </div>
+        <main className='content'>
+          <Routes>
+            <Route path='/' element={<Main />} />
+            <Route
+              path='/movies'
+              element={<ProtectedRoute loggedIn={loggedIn} element={Movies} />}
+            />
+            <Route
+              path='/saved-movies'
+              element={<ProtectedRoute loggedIn={loggedIn} element={SavedMovies} />}
+            />
+            <Route
+              path='/profile'
+              element={
+                <ProtectedRoute
+                  loggedIn={loggedIn}
+                  setCurrentUser={setCurrentUser}
+                  onProfileEdit={onProfileEdit}
+                  onSignOut={onSignOut}
+                  element={Profile}
+                />
+              }
+            />
+            <Route
+              path='/signin'
+              element={loggedIn ? <Navigate to='/' replace /> : <Login onLogin={onLogin} />}
+            />
+            <Route
+              path='/signup'
+              element={
+                loggedIn ? <Navigate to='/' replace /> : <Register onRegister={onRegister} />
+              }
+            />
+            <Route path='/error' element={<Error />} />
+            <Route path='/*' element={<Navigate to='/error' replace />} />
+          </Routes>
+        </main>
+        <Routes>
+          <Route path='/signup' element={<></>} />
+          <Route path='/signin' element={<></>} />
+          <Route path='/profile' element={<></>} />
+          <Route path='/error' element={<></>} />
+          <Route path='/*' element={<Footer />} />
+        </Routes>
+      </div>
+    </CurrentUserContext.Provider>
   );
 };
 

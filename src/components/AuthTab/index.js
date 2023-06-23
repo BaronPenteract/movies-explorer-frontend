@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import './index.css';
 
@@ -12,14 +12,14 @@ const AuthTab = () => {
     <div className='auth-tab'>
       <button
         type='button'
-        onClick={() => handleClick('/signin')}
+        onClick={() => handleClick('/signup')}
         className='auth-tab__button auth-tab__button_type_register'
       >
         Регистрация
       </button>
       <button
         type='button'
-        onClick={() => handleClick('/signup')}
+        onClick={() => handleClick('/signin')}
         className='auth-tab__button auth-tab__button_type_login'
       >
         Войти

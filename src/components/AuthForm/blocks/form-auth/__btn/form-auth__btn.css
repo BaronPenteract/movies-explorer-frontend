@@ -17,7 +17,7 @@
   box-sizing: border-box;
   border: 1px solid transparent; 
   border-radius: 3px;
-  background-color: #4285F4;
+  background-color: var(--secondary-accent-color);
   cursor: pointer;
   transition: background-color .2s linear, border-color .2s linear, color .2s linear;
 }
@@ -25,28 +25,28 @@
 
 .form-auth__btn:hover {
   background-color: transparent;
-  border-color: #4285F4;
-  color: #4285F4;
+  border-color: var(--secondary-accent-color);
+  color: var(--secondary-accent-color);
 }
 
 .form-auth__btn:focus {
   outline: none;
   background-color: transparent;
-  border-color: #4285F4;
-  color: #4285F4;
+  border-color: var(--secondary-accent-color);
+  color: var(--secondary-accent-color);
 }
 
 .form-auth__btn:disabled {
   opacity: .5;
   cursor: default;
   background-color: transparent;
-  border-color: #fff;
-  color: #fff;
+  border-color: var(--primary-text-color);
+  color: var(--primary-text-color);
 }
 
 .form-auth__btn:disabled:hover {
-  border-color: #fff;
-  color: #fff;
+  border-color: var(--primary-text-color);
+  color: var(--primary-text-color);
 }
 
 @media screen and (max-width: 600px) {

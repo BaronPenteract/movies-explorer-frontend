@@ -1,0 +1,11 @@
+.search-form__error {
+  display: block;
+  padding: 0 24px;
+  min-height: 18px;
+  align-self: flex-start;
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: var(--tertiary-accent-color);
+}

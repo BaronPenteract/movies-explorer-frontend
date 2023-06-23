@@ -1,12 +1,17 @@
 @import url(./vendor/normalize.css);
 @import url(./vendor/fonts/fonts.css);
 
+@import url(./utils/variables.css);
+
 @import url(./blocks/link/link.css);
 @import url(./blocks/content/content.css);
 @import url(./blocks/container/container.css);
 @import url(./blocks/container/__title/container__title.css);
 @import url(./blocks/container/_type/container_type_movie-list.css);
 @import url(./blocks/container/_type/container_type_saved-movie-list.css);
+@import url(./blocks/info-message/info-message.css);
+@import url(./blocks/info-message/_active/info-message_active.css);
+@import url(./blocks/info-message/_type/info-message_type_error.css);
 
 @import url(./blocks/auth/auth.css);
 @import url(./blocks/profile/profile.css);

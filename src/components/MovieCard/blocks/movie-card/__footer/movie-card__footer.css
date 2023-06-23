@@ -4,6 +4,6 @@
   font-weight: 400;
   font-size: 11px;
   line-height: 13px;
-  color: #8B8B8B;
-  border-top: 1px solid #424242;
+  color: var(--secondary-text-color);
+  border-top: 1px solid var(--primary-border-color);
 }

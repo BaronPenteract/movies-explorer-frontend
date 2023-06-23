@@ -10,7 +10,7 @@
   line-height: 18px;
   color: inherit;
 
-  background-color: #2F2F2F;
+  background-color: var(--quaternary-background-color);
   border-color: transparent;
   border-radius: 8px;
   outline: 1px solid transparent;
@@ -19,11 +19,15 @@
 }
 
 .search-form__input::placeholder {
-  color: #8B8B8B;
+  color: var(--secondary-text-color);
 }
 
 .search-form__input:focus {
-  outline: 1px solid #4285F4;
+  outline: 1px solid var(--secondary-accent-color);
+}
+
+.search-form__input:disabled {
+  color: var(--secondary-text-color)
 }
 
 @media screen and (max-width: 600px) {

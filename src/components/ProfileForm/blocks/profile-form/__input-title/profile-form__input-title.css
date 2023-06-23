@@ -8,5 +8,5 @@
   font-size: 11px;
   line-height: 13px;
   
-  color: #fff;
+  color: var(--primary-text-color);
 }

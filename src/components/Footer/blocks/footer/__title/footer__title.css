@@ -4,7 +4,7 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 16px;
-  color: #8b8b8b;
+  color: var(--secondary-text-color);
   text-align: center;
 }
 

@@ -1,0 +1,4 @@
+.checkbox__custom_disabled {
+  opacity: .5;
+  cursor: default;
+}

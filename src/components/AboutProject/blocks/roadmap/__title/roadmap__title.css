@@ -11,7 +11,7 @@
   font-size: 14px;
   line-height: 17px;
   
-  color: #8B8B8B;
+  color: var(--secondary-text-color);
 }
 
 @media screen and (max-width: 600px) {

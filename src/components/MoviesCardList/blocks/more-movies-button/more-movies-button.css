@@ -9,7 +9,7 @@
   line-height: 15px;
   color: inherit;
   
-  background: #2F2F2F;
+  background: var(--quaternary-background-color);
   border-radius: 6px;
   border: 1px solid transparent;
   cursor: pointer;
@@ -19,5 +19,5 @@
 }
 
 .more-movies-button:hover {
-  border-color: #3DDC84;
+  border-color: var(--primary-accent-color);
 }

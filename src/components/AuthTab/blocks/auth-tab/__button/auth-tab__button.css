@@ -10,5 +10,5 @@
 }
 
 .auth-tab__button:hover {
-  color: #3DDC84;
+  color: var(--primary-accent-color);
 }

@@ -1,8 +1,8 @@
 .checkbox__custom_active {
-  background-color: #3DDC84;
+  background-color: var(--primary-accent-color);
   border-color: transparent;
 }
 
 .checkbox__custom_active:hover {
-  background-color: #4285F4;;
+  background-color: var(--secondary-accent-color);;
 }

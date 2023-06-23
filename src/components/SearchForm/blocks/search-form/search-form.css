@@ -4,19 +4,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 5px;
 
-  border-bottom: 1px solid #424242;
+  border-bottom: 1px solid var(--primary-border-color);
 }
 
 @media screen and (max-width: 1024px) {
   .search-form{
-    gap: 40px;
+    gap: 11px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .search-form{
-    gap: 46px;
+    gap: 14px;
   }
 }

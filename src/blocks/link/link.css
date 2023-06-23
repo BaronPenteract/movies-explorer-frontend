@@ -10,5 +10,5 @@
 }
 
 .link:hover {
-  color: #3DDC84;
+  color: var(--primary-accent-color);
 }

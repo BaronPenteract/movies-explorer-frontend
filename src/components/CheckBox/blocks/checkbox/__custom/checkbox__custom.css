@@ -6,12 +6,12 @@
   box-sizing: border-box;
 
   border-radius: 20px;
-  border: 1px solid #3DDC84;
+  border: 1px solid var(--primary-accent-color);
   cursor: pointer;
 
-  transition: background-color .2s linear, border-color .2s linear;
+  transition: background-color .2s linear, border-color .2s linear, opacity .2s linear;
 }
 
 .checkbox__custom:hover {
-  border-color: #4285F4;
+  border-color: var(--secondary-accent-color);
 }

@@ -20,5 +20,5 @@
 
 .profile-form__input:focus {
   outline: none;
-  border-bottom-color:  #4285F4;
+  border-bottom-color:  var(--secondary-accent-color);
 }

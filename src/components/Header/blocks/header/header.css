@@ -5,6 +5,6 @@
   justify-content: space-between;
   align-items: center;
 
-  background-color: #202020;
+  background-color: var(--primary-background-color);
   box-sizing: border-box;
 }

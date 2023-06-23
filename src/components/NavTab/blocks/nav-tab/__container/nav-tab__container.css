@@ -14,7 +14,7 @@
 
     flex-direction: column;
     
-    background-color: #202020;
+    background-color: var(--primary-background-color);
     
     transition: visibility .2s linear, opacity .2s linear;
   }
